@@ -1,10 +1,8 @@
 class PublicationsController < ApplicationController
-
   def index
     @publications = []
     @publication = Publication.new
-    
-    get_results_form_api if params[:commit].eql?("検索")
+    results_form_api if params[:commit].eql?('検索')
   end
 
   def new
@@ -13,7 +11,6 @@ class PublicationsController < ApplicationController
 
   def create
     @publication = Publication.find_or_initialize_by(isbn_code: params[:publication][:isbn_code])
-
     unless @publication.persisted?
       publication = Publication.new(publication_params)
       publication.save
@@ -23,13 +20,12 @@ class PublicationsController < ApplicationController
 
   private
 
-  def get_results_form_api
+  def results_form_api
     search_word = {}
     search_word[:title] = params[:title] if params[:title].present?
     search_word[:author] = params[:author] if params[:author].present?
 
     results = RakutenWebService::Books::Book.search(search_word)
-    
     results.each do |result|
       @publications << read(result)
     end
