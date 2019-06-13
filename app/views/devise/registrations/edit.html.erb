@@ -15,26 +15,23 @@
 
   <div class="field">
     <%= f.label :profile %> <br />
-    <%= f.text_field :profile %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %> <i>(パスワード変更時のみ入力してください)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.text_area :profile %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(最新のパスワードを入力してください)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :password %> <i>(パスワード変更時のみ入力してください)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
