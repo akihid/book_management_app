@@ -3,34 +3,16 @@
   <%= f.label "タイトル" %>:<%= f.text_field :title , value: params[:title] %>
   <%= f.label "著者" %>:<%= f.text_field :author , value: params[:author] %>
   <%= f.submit "検索" ,class:"btn-sm"%>
-  <%= link_to t('btn.clear'), items_path ,class:"btn-sm btn-dark"%>
+  <%= link_to t('btn.clear'), publications_path ,class:"btn-sm btn-dark"%>
 <% end %>
 
 <div class="container">
   <div class="row">
     <% @publications.each do |publication| %>
         <div class="col-md-3">
-          <%= item[:title] %><br>
-          <%= form_with(model: @publication, url: publications_path, local: true) do |f|%>
-            <%= f.hidden_field :isbn_code, value: publication[:isbn_code]%>
-            <%= f.hidden_field :title, value: itpublicationem[:title]%>
-            <%= f.hidden_field :image, value: publication[:image]%>
-            <%= button_tag type: :submit do %>
-              <%= image_tag(publication[:image] , size: '200x200')%>
-            <% end %>
-          <% end %>
+          <%= publication[:title] %><br>
+          <%= image_tag(publication[:image] , size: '200x200')%>
         </div>
     <% end %>
   </div>
-
-    <div class="row">
-      <p>登録済みリスト</p>
-      <% (Publication.all).each do |publication| %>
-          <div class="col-md-3">
-            <%= publication[:title] %><br>
-            <%= link_to image_tag(publication[:image] , size: '200x200'), edit_publication_path(publication.id)%>
-          </div>
-      <% end %>
-    </div>
-
 </div>
