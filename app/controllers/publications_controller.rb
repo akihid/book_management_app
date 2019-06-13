@@ -7,6 +7,19 @@ class PublicationsController < ApplicationController
     get_results_form_api if params[:commit].eql?("検索")
   end
 
+  def new
+    @publication = Publication.new
+  end
+
+  def create
+    @publication = Publication.find_or_initialize_by(isbn_code: params[:publication][:isbn_code])
+
+    unless @publication.persisted?
+      publication = Publication.new(publication_params)
+      publication.save
+    end
+    redirect_to publications_path
+  end
 
   private
 
@@ -34,5 +47,9 @@ class PublicationsController < ApplicationController
       image: image,
       isbn_code: isbn_code
     }
+  end
+
+  def publication_params
+    params.require(:publication).permit(:title, :author, :isbn_code, :image)
   end
 end
