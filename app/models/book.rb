@@ -1,4 +1,5 @@
 class Book < ApplicationRecord
+  validates :user_id, presence: true, uniqueness: { scope: :publication_id }
   acts_as_taggable_on :categories
 
   belongs_to :user
