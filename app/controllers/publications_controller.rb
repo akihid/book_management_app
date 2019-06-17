@@ -12,10 +12,15 @@ class PublicationsController < ApplicationController
   def create
     @publication = Publication.find_or_initialize_by(isbn_code: params[:publication][:isbn_code])
     unless @publication.persisted?
-      publication = Publication.new(publication_params)
-      publication.save
+      @publication = Publication.new(publication_params)
+      @publication.save
     end
-    redirect_to publications_path
+
+    redirect_to new_book_path(publication: @publication)
+    # book = current_user.books.build(publication_id: @publication.id)
+    # book.save
+
+    # redirect_to publications_path
   end
 
   private

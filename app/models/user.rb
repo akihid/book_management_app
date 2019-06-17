@@ -4,4 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   mount_uploader :icon, IconUploader
+
+  has_many :books, dependent: :destroy
+  has_many :publications, through: :books
 end
