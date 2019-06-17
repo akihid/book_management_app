@@ -1,0 +1,7 @@
+<%= form_with(model: @book , local: true) do |f| %>
+    <%= f.hidden_field :publication_id%>
+    <%= @book.publication.title%><br>
+    <%= @book.publication.author%><br>
+    <%= image_tag(@book.publication.image , size: '200x200')%>
+    <%= f.submit 'submit' ,class:"btn-sm"%>
+<% end %>

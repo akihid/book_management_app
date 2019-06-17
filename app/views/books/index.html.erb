@@ -1,2 +1,11 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+
+<div class="row">
+  <p>確認用</p>
+  <% (current_user.publications).each do |publication| %>
+    <div class="col-md-3">
+      <%= publication[:title] %><br>
+      <%= publication[:author] %><br>
+      <%= image_tag(publication[:image] , size: '200x200')%>
+    </div>
+  <% end %>
+</div>
