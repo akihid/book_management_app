@@ -1,8 +1,7 @@
-
+<p>登録済みの本</p><br>
 <div class="row">
-  <p>確認用</p>
   <% (current_user.publications).each do |publication| %>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= publication[:title] %><br>
       <%= publication[:author] %><br>
       <%= image_tag(publication[:image] , size: '200x200')%>

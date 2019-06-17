@@ -23,15 +23,3 @@
     </div>
   <% end %>
 </div>
-
-
-<div class="row">
-  <p>確認用</p>
-  <% (Publication.all).each do |publication| %>
-    <div class="col-md-3">
-      <%= publication[:title] %><br>
-      <%= publication[:author] %><br>
-      <%= image_tag(publication[:image] , size: '200x200')%>
-    </div>
-  <% end %>
-</div>

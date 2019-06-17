@@ -1,8 +1,23 @@
 
-  <h1>マイページ</h1>
+<h1>マイページ</h1>
 
-      <%= @user.name %>
-      <%= image_tag @user.icon.url if @user.icon %>
+<%= @user.name %>
+<%= image_tag @user.icon.url if @user.icon %>
+
+<p>登録済みの本</p><br>
+<%= form_with(url: user_path(current_user.id) , method: 'get' , local: true)do |f| %>
+  <%= f.label "タイトル" %>:<%= f.text_field :title , value: params[:title] %>
+  <%= f.label "著者" %>:<%= f.text_field :author , value: params[:author] %>
+  <%= f.submit "検索" ,class:"btn-sm"%>
+  <%= link_to t('btn.clear'), user_path(current_user.id) ,class:"btn-sm btn-dark"%>
+<% end %>
+
+<div class="row">
+  <% @books.each do |book| %>
+    <div class="col-md-4">
+      <%= book.publication.title %><br>
+      <%= book.publication.author %><br>
+      <%= image_tag(book.publication.image , size: '200x200')%>
     </div>
-      <%= link_to '一覧' , publications_path ,class:"btn-sm btn-dark"%>
-  </div>
+  <% end %>
+</div>
