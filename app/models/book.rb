@@ -3,16 +3,16 @@ class Book < ApplicationRecord
   belongs_to :publication
 
   scope :search_title, ->(title) do
-    joins(:publication).where("publications.title like ?","%#{title}%") if title.present?
+    joins(:publication).where('publications.title like ?', "%#{title}%") if title.present?
   end
 
   scope :search_author, ->(author) do
-    joins(:publication).where("publications.author like ?","%#{author}%") if author.present?
+    joins(:publication).where('publications.author like ?', "%#{author}%") if author.present?
   end
 
-  scope :search_book, ->(title , author) do
-    return false if (title.nil? && author.nil?)
-    
+  scope :search_book, ->(title, author) do
+    return false if title.nil? && author.nil?
+
     search_title(title).search_author(author)
   end
 end

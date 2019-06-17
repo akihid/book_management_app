@@ -4,6 +4,8 @@
 <%= @user.name %>
 <%= image_tag @user.icon.url if @user.icon %>
 
+<%= link_to '本を登録する', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
+
 <p>登録済みの本</p><br>
 <%= form_with(url: user_path(current_user.id) , method: 'get' , local: true)do |f| %>
   <%= f.label "タイトル" %>:<%= f.text_field :title , value: params[:title] %>

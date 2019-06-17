@@ -9,14 +9,13 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.find_or_initialize_by(user_id: current_user.id, publication_id: book_params[:publication_id])
-    unless @book.persisted?
-      if @book.save
-        flash[:success] = '本の登録完了'
-        redirect_to books_path
-      end
-    else
+    if @book.persisted?
       flash[:success] = '登録済です'
       redirect_to publications_path
+    else
+      @book.save
+      flash[:success] = '本の登録完了'
+      redirect_to books_path
     end
   end
 

@@ -3,5 +3,6 @@
     <%= @book.publication.title%><br>
     <%= @book.publication.author%><br>
     <%= image_tag(@book.publication.image , size: '200x200')%>
+    <br>
     <%= f.submit 'submit' ,class:"btn-sm"%>
 <% end %>
