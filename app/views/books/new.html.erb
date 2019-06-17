@@ -1,8 +1,13 @@
 <%= form_with(model: @book , local: true) do |f| %>
-    <%= f.hidden_field :publication_id%>
-    <%= @book.publication.title%><br>
-    <%= @book.publication.author%><br>
-    <%= image_tag(@book.publication.image , size: '200x200')%>
-    <br>
-    <%= f.submit 'submit' ,class:"btn-sm"%>
+  <%= f.hidden_field :publication_id%>
+  <%= @book.publication.title%><br>
+  <%= @book.publication.author%><br>
+  <%= image_tag(@book.publication.image , size: '200x200')%>
+
+  <div class="form-group">
+    <%= f.label :category_list%>
+    <%= f.text_field :category_list, value: @book.category_list.join(','), id: "book-tags" %><br>
+  </div>
+  <br>
+  <%= f.submit 'submit' ,class:"btn-sm"%>
 <% end %>

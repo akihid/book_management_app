@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
-  acts_as_taggable
-  
+  acts_as_taggable_on :categories
+
   belongs_to :user
   belongs_to :publication
 
