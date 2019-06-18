@@ -14,7 +14,7 @@
   </div>
 
   <div class="field">
-    <%= image_tag(@user.icon.url) if @user.icon%>
+    <%= image_tag(@user.icon.url) if @user.icon.present?%>
     <%= f.label :icon %>
     <%= f.file_field :icon %>
     <%= f.hidden_field :icon_cache %>
@@ -24,12 +24,6 @@
     <%= f.label :profile %> <br />
     <%= f.text_area :profile %>
   </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(最新のパスワードを入力してください)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
 
   <div class="field">
     <%= f.label :password %> <i>(パスワード変更時のみ入力してください)</i><br />

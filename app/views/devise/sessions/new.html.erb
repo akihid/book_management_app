@@ -1,27 +1,27 @@
-<div class="contents row">
-    <h2>Log in</h2>
-
+<div class="card">
+  <article class="card-body">
+  <%= link_to 'サインアップ', new_user_registration_path, class:"float-right btn btn-outline-primary"%>
+    <h4 class="card-title mb-4 mt-1">ログイン</h4>
+    <p>
+      <a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+    </p>
+    <hr>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-      <div class="field">
+      <div class="form-group">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true %>
+        <%= f.email_field :email, autofocus: true, class:'form-control' %>
       </div>
-
-      <div class="field">
+      <div class="form-group">
         <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.password_field :password, autocomplete: "off", class:'form-control' %>
       </div>
-
-      <% if devise_mapping.rememberable? -%>
-        <div class="field">
-          <%= f.label :remember_me %><br />
-          <%= f.check_box :remember_me %>
-        </div>
-      <% end -%>
-
-      <div class="actions">
-        <%= f.submit "Log in" %>
+      <div class="form-group">
+        <%= f.submit "Log in", class:"btn btn-primary btn-block"%>
       </div>
-    <% end %>
-  </div>
+      <p class="text-center">
+      <%= link_to 'アカウントをお持ちでないですか？会員登録はこちら', new_user_registration_path, class:"small"%>
+      </p>
+    <% end %>                                                                                             
+  </article>
+</div> <!-- card.// -->
+
