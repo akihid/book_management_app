@@ -1,43 +1,64 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="card ">
+  <article class="card-body">
+    <h4 class="card-title mb-4 mt-1">プロフィール編集</h4>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class:'form-control'%>
+          </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control'%>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :profile %> <br />
+            <%= f.text_area :profile, class:'form-control'%>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="col-md-6">
+          <div id="img_field" class="field image" onClick="$('#file').click()" >
+            <% if @user.icon.present? %>
+              <%= image_tag @user.icon.url, size: '200x200' %>
+            <% else %>
+              <button type="button" class="btn-sm btn-yellow btn-block">アイコン</button> 
+            <% end %>
+          </div>
+          <%= f.file_field :icon, class: "image", style: "display:none;", id: "file"%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn-sm btn-secondary btn-block" data-toggle="collapse" data-target="#pwd_field" aria-expanded="false" aria-controls="pwd_field">
+            パスワード変更
+          </button>
+          <div class="collapse" id="pwd_field">
+            <div class="card card-body">
+              <div class="form-group">
+                <%= f.label :password %><br />
+                <%= f.password_field :password, autocomplete: "new-password", class:'form-control'%>
+              </div>
 
-  <div class="field">
-    <%= image_tag(@user.icon.url) if @user.icon.present?%>
-    <%= f.label :icon %>
-    <%= f.file_field :icon %>
-    <%= f.hidden_field :icon_cache %>
-  </div>
-
-  <div class="field">
-    <%= f.label :profile %> <br />
-    <%= f.text_area :profile %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %> <i>(パスワード変更時のみ入力してください)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<%= link_to "Back", :back %>
+              <div class="form-group">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control'%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-center">
+            <%= f.submit '更新', class:"btn btn-info"%>
+            <%= link_to "戻る", :back, class:"btn btn-primary"%>
+          </div> 
+        </div>
+      </div>
+    <% end %>                                                                                             
+  </article>
+</div>
