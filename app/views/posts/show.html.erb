@@ -9,4 +9,11 @@
     <p><%= image_tag(@post.publication.image, size: '200x200') %></p>
   </div>
 </div>
+
+  <p>コメント一覧</p>
+  <div id="comments_area">
+    <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
+  </div>
+  <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+
   <%= link_to '一覧へ', posts_path %>

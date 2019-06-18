@@ -46,6 +46,8 @@ class PostsController < ApplicationController
 
   def show
     # make check authority
+    @comments = @post.comments
+    @comment = @post.comments.build
   end
 
   private
