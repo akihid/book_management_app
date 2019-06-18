@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: %i[edit update]
   def index
     @books = current_user.books
   end
@@ -15,10 +16,27 @@ class BooksController < ApplicationController
     redirect_to books_path
   end
 
+  def edit
+    # make check authority
+  end
+
+  def update
+    if @book.update(book_params)
+      flash[:success] = "#{@book.publication.title}の編集完了"
+      redirect_to books_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def book_params
     params.require(:book).permit(:user_id, :publication_id, :category_list)
+  end
+
+  def set_book
+    @book = Book.find(params[:id])
   end
 
   def redirect_back_to_request(err_msg)
