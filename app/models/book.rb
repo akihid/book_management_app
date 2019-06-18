@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   belongs_to :user
   belongs_to :publication
+  has_many :posts, dependent: :destroy
   acts_as_taggable_on :categories
 
   validates :user_id, presence: true, uniqueness: { scope: :publication_id }
