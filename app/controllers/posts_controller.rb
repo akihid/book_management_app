@@ -6,11 +6,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    if params[:back]
-      @post = Post.new(post_params)
-    else
-      @post = Post.new
-    end
+    @post = if params[:back]
+              Post.new(post_params)
+            else
+              Post.new
+            end
   end
 
   def confirm
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-  # make check
+    # make check authority
   end
 
   def update
