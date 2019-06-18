@@ -16,7 +16,7 @@ class PublicationsController < ApplicationController
       @publication.save
     end
 
-    redirect_to new_book_path(publication: @publication)
+    redirect_to new_book_path(publication: @publication, title: @publication.title)
     # book = current_user.books.build(publication_id: @publication.id)
     # book.save
 

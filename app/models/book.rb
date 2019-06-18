@@ -1,9 +1,9 @@
 class Book < ApplicationRecord
-  validates :user_id, presence: true, uniqueness: { scope: :publication_id }
-  acts_as_taggable_on :categories
-
   belongs_to :user
   belongs_to :publication
+  acts_as_taggable_on :categories
+
+  validates :user_id, presence: true, uniqueness: { scope: :publication_id }
 
   scope :search_title, ->(title) do
     joins(:publication).where('publications.title like ?', "%#{title}%") if title.present?
