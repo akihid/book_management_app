@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[edit update]
+  before_action :set_post, only: %i[edit update show]
 
   def index
     @posts = Post.all
@@ -42,6 +42,10 @@ class PostsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def show
+    # make check authority
   end
 
   private

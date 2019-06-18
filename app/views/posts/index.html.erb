@@ -7,6 +7,7 @@
       <%= post.content%><br>
       <%= image_tag(post.publication.image, size: '200x200')%>
       <%= link_to '編集' , edit_post_path(post.id) ,class:"btn-sm btn-info"%>
+      <%= link_to '詳細' , post_path(post.id) ,class:"btn-sm btn-info"%>
     </div>
   <% end %>
 </div>
