@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
 gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'rakuten_web_service'
 gem 'devise'
 gem 'carrierwave'
