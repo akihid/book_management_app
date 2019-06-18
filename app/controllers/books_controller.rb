@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[edit update]
+  before_action :set_book, only: %i[edit update destroy]
   def index
     @books = current_user.books
   end
@@ -27,6 +27,13 @@ class BooksController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    # make check authority
+    @book.destroy
+    flash[:danger] = "#{@book.publication.title}の削除完了"
+    redirect_to books_path
   end
 
   private
