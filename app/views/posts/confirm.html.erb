@@ -1,0 +1,32 @@
+<h1>確認画面</h1>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_with(model:@post , local: true ,url: posts_path) do |f|%>
+
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= @post.title %>
+        <%= f.hidden_field :title %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= @post.content %>
+        <%= f.hidden_field :content %>
+      </div>
+
+      <div class="form-group">
+        <%= @post.publication.title %>
+        <%= image_tag(@post.publication.image) %>
+      </div>
+
+      <div class="form-group">
+        <%= f.hidden_field :publication_id, value: @post.publication.id%>
+      </div>   
+      
+      <%= f.submit '登録',class:"btn btn-default btn-xs"%>
+      <%= f.submit '戻る' , name: 'back',class:"btn btn-default btn-xs"%>
+    </div>
+    <% end %>
+  </div>
+</div>
