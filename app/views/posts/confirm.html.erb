@@ -17,7 +17,7 @@
 
       <div class="form-group">
         <%= @post.publication.title %>
-        <%= image_tag(@post.publication.image) %>
+        <%= image_tag(@post.publication.image, size: '200x200') %>
       </div>
 
       <div class="form-group">
@@ -28,13 +28,11 @@
     </div>
     <% end %>
   </div>
+  <%= form_with(model: @post, local: true, url: new_post_path, method: 'get') do |f|%>
+    <%= f.hidden_field :title %>
+    <%= f.hidden_field :content %>
+    <%= f.hidden_field :publication_id, value: @post.publication.id%>
+    <%= f.submit '戻る' , name: 'back',class:"btn btn-info btn-xs"%>
+  <% end %>
 </div>
 
-<%= form_with(model: @post, local: true, url: new_post_path, method: 'get') do |f|%>
-
-  <%= f.hidden_field :title %>
-  <%= f.hidden_field :content %>
-  <%= f.hidden_field :publication_id, value: @post.publication.id%>
-  <%= f.submit '戻る' , name: 'back',class:"btn btn-default btn-xs"%>
-
-<% end %>

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[edit update]
+
   def index
     @posts = Post.all
   end
@@ -29,9 +31,26 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+  # make check
+  end
+
+  def update
+    if @post.update(post_params)
+      flash[:info] = '投稿の編集をしました。'
+      redirect_to posts_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
