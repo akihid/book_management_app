@@ -2,6 +2,10 @@
 <%= link_to "投稿" , new_post_path ,class:"btn btn-primary btn-lg"%>
 <div class="row">
   <% @posts.each do |post|%>
-    <%= post.title%>
+    <div class="col-md-4">
+      <%= post.title%><br>
+      <%= post.content%><br>
+      <%= image_tag(post.book.publication.image , size: '200x200')%>
+    </div>
   <% end %>
 </div>
