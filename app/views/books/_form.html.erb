@@ -5,7 +5,7 @@
   <%= image_tag(@book.publication.image , size: '200x200')%>
 
   <div class="form-group">
-    <%= f.label :category_list%>
+    <%= f.label :category_list%>(カンマ区切り)<br>
     <%= f.text_field :category_list, value: @book.category_list.join(','), id: "book-tags" %><br>
   </div>
   <br>
