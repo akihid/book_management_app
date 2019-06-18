@@ -12,10 +12,9 @@
 <div class="row">
   <div class="col-md-6">
     <%= form_with(model: @post, local: true, url: confirm_posts_path) do |f|%>
-
       <div class='form-group'>
         <%= f.label '対象' %>
-        <%= f.collection_select :publication_id, current_user.publications, :id, :title ,class:"form-control"%>
+        <%= f.collection_select :publication_id, current_user.publications, :id, :title, selected: params[:post][:publication_id], class:"form-control"%>
       </div>
       <div class='form-group'>
         <%= f.label :title %>
