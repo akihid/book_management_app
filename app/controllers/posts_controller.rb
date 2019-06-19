@@ -57,7 +57,6 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    binding.pry
     @post = Post.find(params[:id])
   end
 end
