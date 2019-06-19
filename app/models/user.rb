@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :publications, through: :books
   has_many :comments, dependent: :destroy
+  has_many :goods, dependent: :destroy
+  has_many :posts, through: :goods
 end
