@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   
   resources :publications
-  resources :users, only:[:show]
+  resources :users, only: [:show]
   resources :books
+  resources :goods, only: [:create, :destroy]
   resources :posts do
     resources :comments
     collection do
