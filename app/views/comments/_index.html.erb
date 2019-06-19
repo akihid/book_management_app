@@ -1,0 +1,13 @@
+<% comments.each do |comment| %>
+  <% if comment.id.present? %>
+    <div class="media text-muted pt-3">
+      <%= image_tag comment.user.icon.url, size: '32x32', class:"mr-2 rounded" if comment.user.icon.present? %>
+        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong class="d-block text-gray-dark"><%= comment.user.name %></strong>
+          <%= comment.content %>
+        </p>
+        <%= link_to '削除', post_comment_path(comment.post, comment), method: :delete, data:{ confirm: '削除しますがよろしいですか？'}, 
+            class:"btn-sm btn-danger", remote: true if current_user.id == comment.user.id %>
+    </div>
+  <% end %>
+<% end %>

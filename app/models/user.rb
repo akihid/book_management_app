@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
   has_many :publications, through: :books
+  has_many :comments, dependent: :destroy
 end

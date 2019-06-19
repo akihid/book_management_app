@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :book
+  has_many :comments, dependent: :destroy
   delegate :publication, to: :book
   delegate :user, to: :book
 

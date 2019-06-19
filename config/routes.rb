@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   root 'publications#index'
   devise_for :users, controllers: { registrations: 'registrations' }
   
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only:[:show]
   resources :books
   resources :posts do
+    resources :comments
     collection do
       post :confirm
     end

@@ -1,4 +1,4 @@
-$ ->
+$(document).on 'turbolinks:load', ->
   $fileField = $('#file')
   # 選択された画像を取得し表示
   $($fileField).on 'change', $fileField, (e) ->
