@@ -2,7 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update show destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.preload(:book)
+    # binding.pry
+    @posts = @posts.search_post(params[:book_name], params[:user_name])
+    # @posts = @posts.user.where('users.name like ?', "%#{params[:user_name]}%") if params[:user_name].present?
+    # @posts = @posts.search_post(params[:book_name], params[:user_name])
   end
 
   def new
