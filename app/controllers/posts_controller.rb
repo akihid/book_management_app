@@ -58,6 +58,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def get_image
+    render partial: 'books/image', locals: {publication_id: params[:publication_id]}
+  end
+
   private
 
   def post_params
@@ -74,4 +78,5 @@ class PostsController < ApplicationController
     flash[:danger] = '本を持っていないと感想はかけません'
     redirect_to user_path(current_user.id)
   end
+  
 end
