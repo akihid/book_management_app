@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   
   resources :publications
-  resources :users, only: [:show]
+  resources :users, only: %i[show]
   resources :books
   resources :posts do
-    resources :comments
-    resources :goods, only: [:create, :destroy]
+    resources :comments, only: %i[create destroy]
+    resources :goods, only: %i[create destroy]
     collection do
       post :confirm
       get :get_image
