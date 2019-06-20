@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'publications#index'
+  root 'posts#index'
   devise_for :users, controllers: { registrations: 'registrations' }
   
   resources :publications
