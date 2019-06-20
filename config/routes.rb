@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :publications
   resources :users, only: [:show]
   resources :books
-  resources :goods, only: [:create, :destroy]
   resources :posts do
     resources :comments
+    resources :goods, only: [:create, :destroy]
     collection do
       post :confirm
     end
