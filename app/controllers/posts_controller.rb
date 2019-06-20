@@ -2,14 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update show destroy]
 
   def index
-    @posts = Post.preload(:book)
-    # binding.pry
-    @posts = @posts.search_post(params[:book_name], params[:user_name])
-    # @posts = @posts.user.where('users.name like ?', "%#{params[:user_name]}%") if params[:user_name].present?
-    # @posts = @posts.search_post(params[:book_name], params[:user_name])
+    @posts = Post.search_post(params[:book_name], params[:user_name])
   end
 
   def new
+    check_user_have_book
     @post = if params[:back]
               Post.new(post_params)
             else
@@ -69,5 +66,12 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def check_user_have_book
+    unless current_user.publications.exists?
+      flash[:danger] = '本を持っていないと感想はかけません'
+      redirect_to user_path(current_user.id)
+    end
   end
 end
