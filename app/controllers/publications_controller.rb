@@ -5,7 +5,11 @@ class PublicationsController < ApplicationController
   def index
     @publications = []
     @publication = Publication.new
-    results_form_api if params[:commit].eql?('検索')
+    results_form_api if params[:title]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new

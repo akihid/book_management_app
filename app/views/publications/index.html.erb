@@ -5,21 +5,6 @@
   <%= f.submit "検索" ,class:"btn-sm"%>
   <%= link_to t('btn.clear'), publications_path ,class:"btn-sm btn-dark"%>
 <% end %>
-<%= paginate @publications if @publications.present? %>
-<div class="row">
-  <% @publications.each do |publication| %>
-    <div class="col-md-3">
-      <%= publication[:title] %><br>
-      <%= publication[:author] %><br>
-      <%= form_with(model: @publication, url: publications_path, local: true) do |f|%>
-        <%= f.hidden_field :isbn_code, value: publication[:isbn_code]%>
-        <%= f.hidden_field :author, value: publication[:author]%>
-        <%= f.hidden_field :title, value: publication[:title]%>
-        <%= f.hidden_field :image, value: publication[:image]%>
-        <%= button_tag type: :submit , data: {confirm: "#{publication[:title]}を登録しますがよろしいですか？"} do %>
-          <%= image_tag(publication[:image] , size: '200x200')%>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+<div id="publications">
+  <%= render partial: 'publications/publications' %>
 </div>
