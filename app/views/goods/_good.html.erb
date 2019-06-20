@@ -1,7 +1,7 @@
  <% if @good.present? %>
     <%= link_to post_good_path(post_id: post.id, id: @good.id), method: :delete, remote: true do %>
       <div class="vertical_like">
-        <i class="material-icons red-text">いいね済</i>
+        <span class="fa fa-heart like-btn-unlike"></span>
         <span class="red-text">
           <%# いいねのカウントpost.goods_count %>
         </span>
@@ -10,10 +10,8 @@
   <% else %>
     <%= link_to post_goods_path(post.id), method: :post, remote: true do %>
       <div class="vertical_like">
-        <i class="material-icons grey-text text-darken-2">いいね</i>
-        <span class="grey-text text-darken-2">いいね
+        <span class="fa fa-heart like-btn"></span>
           <%# いいねのカウントpost.goods_count %>
-        </span>
       </div>
     <% end %>
   <% end %>
