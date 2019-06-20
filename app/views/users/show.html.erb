@@ -8,7 +8,7 @@
         <p class="text-center"><%= @user.name %></p>
       </div>
       <div class="col-md-9">
-        <%= @user.profile %>
+        <%= simple_format(@user.profile) %>
       </div> 
     </div>
     <%= link_to '本を登録する', publications_path, class:"btn-sm btn-dark"%>

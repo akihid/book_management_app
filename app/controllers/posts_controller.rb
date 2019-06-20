@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[edit update show]
+  before_action :set_post, only: %i[edit update show destroy]
+  before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @posts = Post.search_post(params[:book_name], params[:user_name])
   end
 
   def new
+    check_user_have_book
     @post = if params[:back]
               Post.new(post_params)
             else
@@ -51,6 +53,16 @@ class PostsController < ApplicationController
     @good = current_user.goods.find_by(post_id: @post.id)
   end
 
+  def destroy
+    @post.destroy
+    flash[:danger] = '投稿を削除しました。'
+    redirect_to posts_path
+  end
+
+  def get_image
+    render partial: 'books/image', locals: {publication_id: params[:publication_id]}
+  end
+
   private
 
   def post_params
@@ -60,4 +72,12 @@ class PostsController < ApplicationController
   def set_post
     @post = Post.find(params[:id])
   end
+
+  def check_user_have_book
+    return if current_user.publications.exists?
+
+    flash[:danger] = '本を持っていないと感想はかけません'
+    redirect_to user_path(current_user.id)
+  end
+  
 end

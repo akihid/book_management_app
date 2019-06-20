@@ -8,3 +8,79 @@
 @import "partials/*";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+
+html{
+  font-size: 1rem;
+  height: 100%;
+}
+body{
+  height: 100%;
+  font-size: 1rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  background: linear-gradient(transparent 70%, #808080 70%);
+}
+#error_explantion{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  color:#F00;
+}
+
+#error_explantion p , #error_explantion li{
+  font-size:1rem;
+}
+
+header{
+  background:#FAFAFA;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.header-left{
+  float: left;
+}
+.header-right{
+  float:right;
+}
+
+ul{
+  list-style: none;
+}
+header ul a ,header ul p{
+  display: block;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  margin: 2.5px;
+}
+
+li {
+  width: auto;
+  list-style: none;
+  float: left;
+}
+a{
+  color:#000000;
+}
+a:hover {
+  color:#808080;
+  text-decoration: none;
+}
+
+.pagination{
+  display: block;
+  text-align: right;
+}
+
+.container{
+  width: 100%;
+  margin:0 auto;
+  padding-bottom: 30px;
+}
+.card{
+  margin: 0 auto;
+}

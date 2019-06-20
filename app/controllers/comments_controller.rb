@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[destroy]
+  before_action :authenticate_user!
 
   def create
     set_comment_for_create

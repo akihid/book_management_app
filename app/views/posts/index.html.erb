@@ -1,13 +1,37 @@
 
 <%= link_to "投稿" , new_post_path ,class:"btn btn-primary btn-lg"%>
+
+<%= form_with(url: posts_path, method: 'get' , local: true)do |f| %>
+  <%= f.label "本の名前" %>:<%= f.text_field :book_name , value: params[:book_name] %>
+  <%= f.label "書いた人" %>:<%= f.text_field :user_name , value: params[:user_name] %>
+  <%= f.submit "検索" ,class:"btn-sm"%>
+  <%= link_to 'クリア', posts_path, class:"btn-sm btn-dark"%>
+<% end %>
+
+
 <div class="row">
   <% @posts.each do |post|%>
     <div class="col-md-4">
-      <%= post.title%><br>
-      <%= post.content%><br>
-      <%= image_tag(post.publication.image, size: '200x200')%>
-      <%= link_to '編集' , edit_post_path(post.id) ,class:"btn-sm btn-info"%>
-      <%= link_to '詳細' , post_path(post.id) ,class:"btn-sm btn-info"%>
+      <div class="card bg-light mt-3">
+        <div class="card-title row">
+          <span class='col-6 text-left'><%= post.title%></span>
+          <% if post.user.id == current_user.id %>
+            <span class='col-6 text-right'>
+              <%= link_to '編集' , edit_post_path(post.id)%>    
+              <%= link_to '削除' , post_path(id: post.id) , method: :delete , data:{confirm: "解除してもよろしいですか？"} %>
+            </span>
+          <% end %>
+        </div>
+        <span class='text-right'>by. <%= post.user.name %></span>
+      
+        <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id), class:'text-center'%>
+
+        <div class="card bg-light col-md-12">
+          <div id="comments_area" class="latest_comments_area">
+            <%= render partial: 'comments/latest_comment', locals: { comment: post.comments.last, post: post } %>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>

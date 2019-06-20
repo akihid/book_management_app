@@ -20,3 +20,8 @@
 //= require jquery-ui
 //= require tag-it
 //= require_tree .
+
+$(document).on("turbolinks:load", function() {
+  var obj = document.getElementById('comments_area');
+  obj.scrollTop = obj.scrollHeight;
+});

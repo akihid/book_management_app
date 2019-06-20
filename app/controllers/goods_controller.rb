@@ -1,5 +1,6 @@
 class GoodsController < ApplicationController
   before_action :set_post
+  before_action :authenticate_user!
 
   def create
     @good = current_user.goods.new(post_id: params[:post_id])
