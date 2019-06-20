@@ -10,3 +10,7 @@ $(document).on 'change', '#post_publication_id', ->
     }
   ).done (data) ->
     $('.book_image').html(data)
+
+$(document).on 'click', '#fake_btn_back', ->
+  document.getElementById('btn_back').click()
+  return

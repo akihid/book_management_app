@@ -1,38 +1,44 @@
-<h1>確認画面</h1>
 <div class="row">
-  <div class="col-md-6">
+  <div class="card bg-light col-md-6">
     <%= form_with(model:@post , local: true ,url: posts_path) do |f|%>
+      <div class="row card bg-light text-center pt-2">
+        <div class="form-group">
+          <%= @post.publication.title %>
+        </div>
+        <div class="book_image">
+          <%= image_tag(@post.publication.image, size: '200x200') %>
+        </div>
+      </div>
 
       <div class="form-group">
-        <%= f.label :title %>
-        <%= @post.title %>
+        <span><%= f.label :title %></span>
+        <span class="form-control"><%= @post.title%></span>
         <%= f.hidden_field :title %>
       </div>
 
       <div class="form-group">
-        <%= f.label :content %>
-        <%= @post.content %>
+        <span><%= f.label :content %></span>
+        <span class="form-control"><%= @post.content %></span>
         <%= f.hidden_field :content %>
-      </div>
-
-      <div class="form-group">
-        <%= @post.publication.title %>
-        <%= image_tag(@post.publication.image, size: '200x200') %>
       </div>
 
       <div class="form-group">
         <%= f.hidden_field :publication_id, value: @post.publication.id%>
       </div>   
       
-      <%= f.submit '登録',class:"btn btn-default btn-xs"%>
-    </div>
+      <div class="text-center pb-2">
+        <%= f.submit '登録',class:"btn btn-info btn-xs"%>
+        <span class="btn btn-info btn-xs" id="fake_btn_back">修正する</span>
+      </div>
     <% end %>
   </div>
-  <%= form_with(model: @post, local: true, url: new_post_path, method: 'get') do |f|%>
+</div>
+
+<%= form_with(model: @post, local: true, url: new_post_path, method: 'get', class:"invisible") do |f|%>
     <%= f.hidden_field :title %>
     <%= f.hidden_field :content %>
     <%= f.hidden_field :publication_id, value: @post.publication.id%>
-    <%= f.submit '戻る' , name: 'back',class:"btn btn-info btn-xs"%>
+    <%= f.submit '戻る' , name: 'back',id:'btn_back', class:"btn btn-info btn-xs"%>
   <% end %>
 </div>
 
