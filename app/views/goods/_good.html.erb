@@ -1,0 +1,10 @@
+<% if @good.present? %>
+  <%= link_to post_good_path(post_id: post.id, id: @good.id), method: :delete, remote: true do %>
+    <span class="fa fa-heart like-btn-unlike"></span>
+  <% end %>
+<% else %>
+  <%= link_to post_goods_path(post.id), method: :post, remote: true do %>
+    <span class="fa fa-heart like-btn"></span>
+  <% end %>
+<% end %>
+<%= post.goods_count %>

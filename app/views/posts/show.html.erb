@@ -3,6 +3,9 @@
     <p>投稿者：<%= @post.user.name %></p>
     <p>タイトル:<%= @post.title %></p>
     <p>詳細:<%= @post.content %></p>
+    <div id="goods_buttons_<%= @post.id %>">
+      <%= render partial: 'goods/good', locals: { post: @post, goods: @goods} %>
+    </div>
   </div>
   <div class="col-md-6">
     <%= @post.publication.title %>
