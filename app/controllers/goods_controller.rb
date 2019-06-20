@@ -2,7 +2,9 @@ class GoodsController < ApplicationController
   before_action :set_post
 
   def create
-    @good = current_user.goods.create(post_id: params[:post_id])
+    @good = current_user.goods.new(post_id: params[:post_id])
+    redirect_back_to_request('すでにいいね済なので登録できません') if @good.invalid?
+    @good.save
     @goods = Good.where(post_id: params[:post_id])
     @post.reload
   end
