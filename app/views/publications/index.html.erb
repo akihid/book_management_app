@@ -5,6 +5,7 @@
   <%= f.submit "検索" ,class:"btn-sm"%>
   <%= link_to t('btn.clear'), publications_path ,class:"btn-sm btn-dark"%>
 <% end %>
+<%= paginate @publications if @publications.present? %>
 <div class="row">
   <% @publications.each do |publication| %>
     <div class="col-md-3">
