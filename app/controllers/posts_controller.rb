@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
+  PER = 6
   before_action :set_post, only: %i[edit update show destroy]
   before_action :authenticate_user!
 
   def index
     @posts = Post.search_post(params[:book_name], params[:user_name])
+    @posts = @posts.page(params[:page]).per(PER)
   end
 
   def new

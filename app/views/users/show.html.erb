@@ -24,6 +24,7 @@
   <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
 <% end %>
 
+<%= paginate @books %>
 <div class="row">
   <% @books.each do |book| %>
     <div class="col-md-4">

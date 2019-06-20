@@ -1,5 +1,7 @@
 class PublicationsController < ApplicationController
+  PER = 8
   before_action :authenticate_user!
+  
   def index
     @publications = []
     @publication = Publication.new
@@ -18,10 +20,6 @@ class PublicationsController < ApplicationController
     end
 
     redirect_to new_book_path(publication: @publication, title: @publication.title)
-    # book = current_user.books.build(publication_id: @publication.id)
-    # book.save
-
-    # redirect_to publications_path
   end
 
   private
@@ -35,6 +33,7 @@ class PublicationsController < ApplicationController
     results.each do |result|
       @publications << read(result)
     end
+    @publications = Kaminari.paginate_array(@publications , total_count: results.count).page(params[:page]).per(PER)
   end
 
   def read(result)
