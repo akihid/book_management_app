@@ -1,5 +1,6 @@
 class PublicationsController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @publications = []
     @publication = Publication.new
@@ -35,6 +36,7 @@ class PublicationsController < ApplicationController
     results.each do |result|
       @publications << read(result)
     end
+    # @publications = @publications.page(params[:page]).per(PER)
   end
 
   def read(result)

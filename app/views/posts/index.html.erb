@@ -8,7 +8,7 @@
   <%= link_to 'クリア', posts_path, class:"btn-sm btn-dark"%>
 <% end %>
 
-
+<%= paginate @posts %>
 <div class="row">
   <% @posts.each do |post|%>
     <div class="col-md-4">
