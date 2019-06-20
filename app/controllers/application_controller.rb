@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name profile icon icon_cache])
   end
+
+  def redirect_back_to_request(err_msg)
+    redirect_back(fallback_location: request.url)
+    flash[:danger] = err_msg
+  end
 end

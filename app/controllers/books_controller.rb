@@ -45,9 +45,4 @@ class BooksController < ApplicationController
   def set_book
     @book = Book.find(params[:id])
   end
-
-  def redirect_back_to_request(err_msg)
-    redirect_back(fallback_location: request.url)
-    flash[:danger] = err_msg
-  end
 end
