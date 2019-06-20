@@ -18,7 +18,7 @@
 
       <div class="form-group">
         <span><%= f.label :content %></span>
-        <span class="form-control"><%= @post.content %></span>
+        <span class="form-control"><%= simple_format(@post.content) %></span>
         <%= f.hidden_field :content %>
       </div>
 

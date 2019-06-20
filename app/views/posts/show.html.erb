@@ -24,7 +24,7 @@
   <h5 class="text-left">感想</h5>
   <div class="card bg-light col-md-12 h-75">
     <div class="card-body">
-      <%= @post.content %>
+      <%= simple_format(@post.content) %>
     </div>
   </div>
 </div>
