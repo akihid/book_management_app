@@ -12,11 +12,11 @@
 <div class="row">
   <div class="card bg-light col-md-6">
     <%= form_with(model: @post, local: true, url: confirm_posts_path) do |f|%>
-      <div class="row card bg-light text-center pt-2">
+      <div class="bg-light text-center pt-2">
         <div class='form-group'>
           <%= f.label '対象' %>
-          <%= f.collection_select :publication_id, current_user.publications, :id, :title,
-              selected: params[:post] ? params[:post][:publication_id] : nil, class:"form-control"%>
+          <%= f.collection_select :publication_id, current_user.publications, :id, :title, {prompt: false},
+              selected: params[:post] ? params[:post][:publication_id] : nil, class:"form-control" %>
         </div>
         <div class="book_image">
           <%= render partial: 'books/image', locals: {publication_id: current_user.publications.first.id} %>
