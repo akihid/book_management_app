@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[edit update show destroy]
+  before_action :authenticate_user!
 
   def index
     @posts = Post.search_post(params[:book_name], params[:user_name])
