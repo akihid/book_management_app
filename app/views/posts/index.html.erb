@@ -5,9 +5,9 @@
     <div class="col-md-4">
       <%= post.title%><br>
       <%= post.content%><br>
-      <%= image_tag(post.publication.image, size: '200x200')%>
-      <%= link_to '編集' , edit_post_path(post.id) ,class:"btn-sm btn-info"%>
-      <%= link_to '詳細' , post_path(post.id) ,class:"btn-sm btn-info"%>
+      <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id)%>
+      <%= link_to '編集' , edit_post_path(post.id) ,class:"btn-sm btn-info"%>    
+      <%= link_to '削除' , post_path(id: post.id) , method: :delete , data:{confirm: "解除してもよろしいですか？"} %>
     </div>
   <% end %>
 </div>

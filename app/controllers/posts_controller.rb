@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[edit update show]
+  before_action :set_post, only: %i[edit update show destroy]
 
   def index
     @posts = Post.all
@@ -49,6 +49,12 @@ class PostsController < ApplicationController
     @comments = @post.comments
     @comment = @post.comments.build
     @good = current_user.goods.find_by(post_id: @post.id)
+  end
+
+  def destroy
+    @post.destroy
+    flash[:danger] = '投稿を削除しました。'
+    redirect_to posts_path
   end
 
   private
