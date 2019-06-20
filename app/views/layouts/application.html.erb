@@ -9,25 +9,27 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <div class="container">
-
-    <header>
-      <nav>
+  <header>
+    <nav>
+      <div class="header-left">
+        <h1>書籍管理アプリ</h1>
+      </div>
+      <div class="header-right">
         <% if user_signed_in? %> 
-          Logged in as <strong><%= current_user.name %></strong>
-          <%= link_to 'マイページ' , user_path(current_user.id)%></li>
-          <%= link_to '感想を見る' , posts_path %></li>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete  %>
+          <li><%= link_to "マイページ", user_path(current_user.id),class:"btn btn-dark btn-lg"%></li>
+          <li><%= link_to '感想を見る' , posts_path ,class:"btn btn-info btn-lg"%></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn btn-danger btn-lg"%></li>
         <% else %>
-          <%= link_to 'サインアップ', new_user_registration_path %> |
-          <%= link_to 'ログイン', new_user_session_path %>
+          <li><%= link_to 'サインアップ', new_user_registration_path,class:"btn btn-info btn-lg"%></li>
+          <li><%= link_to 'ログイン', new_user_session_path,class:"btn btn-dark btn-lg"%></li>
         <% end %>
-      </nav>
-    </header>
-
-    <%= render 'layouts/flash_messages' %>
-    <%= yield %>
-  </div>
+      </div>  
+    </nav>
+  </header>
+  <body>
+    <div class="container">
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
