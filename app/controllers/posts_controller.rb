@@ -69,9 +69,9 @@ class PostsController < ApplicationController
   end
 
   def check_user_have_book
-    unless current_user.publications.exists?
-      flash[:danger] = '本を持っていないと感想はかけません'
-      redirect_to user_path(current_user.id)
-    end
+    return if current_user.publications.exists?
+
+    flash[:danger] = '本を持っていないと感想はかけません'
+    redirect_to user_path(current_user.id)
   end
 end
