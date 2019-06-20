@@ -6,6 +6,10 @@ class PublicationsController < ApplicationController
     @publications = []
     @publication = Publication.new
     results_form_api if params[:title]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
