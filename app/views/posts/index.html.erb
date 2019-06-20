@@ -3,11 +3,20 @@
 <div class="row">
   <% @posts.each do |post|%>
     <div class="col-md-4">
-      <%= post.title%><br>
-      <%= post.content%><br>
-      <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id)%>
-      <%= link_to '編集' , edit_post_path(post.id) ,class:"btn-sm btn-info"%>    
-      <%= link_to '削除' , post_path(id: post.id) , method: :delete , data:{confirm: "解除してもよろしいですか？"} %>
+      <div class="card bg-light mt-3">
+        <div class="card-title row">
+          <span class='col-6 text-left'><%= post.title%></span>
+          <% if post.user.id == current_user.id %>
+            <span class='col-6 text-right'>
+              <%= link_to '編集' , edit_post_path(post.id)%>    
+              <%= link_to '削除' , post_path(id: post.id) , method: :delete , data:{confirm: "解除してもよろしいですか？"} %>
+            </span>
+          <% end %>
+        </div>
+        <span class='text-right'>by. <%= post.user.name %></span>
+      
+        <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id), class:'text-center'%>
+      </div>
     </div>
   <% end %>
 </div>
