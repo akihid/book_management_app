@@ -1,13 +1,23 @@
-<%= form_with(model: @book, url: chose_new_or_edit, local: true) do |f| %>
-  <%= f.hidden_field :publication_id%>
-  <%= @book.publication.title%><br>
-  <%= @book.publication.author%><br>
-  <%= image_tag(@book.publication.image , size: '200x200')%>
+<div class="row">
+  <div class="card bg-light col-md-6">
+    <%= form_with(model: @book, url: chose_new_or_edit, local: true) do |f| %>
+      <div class="card bg-light col-md-6 text-center h-100">
+        <div class='form-group'>
+          <%= @book.publication.title%><br>
+          <%= @book.publication.author%><br>
+          <%= image_tag(@book.publication.image , size: '200x200')%>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :category_list%>(カンマ区切り)<br>
+        <%= f.text_field :category_list, value: @book.category_list.join(','), id: "book-tags" %><br>
+        <%= f.hidden_field :publication_id%>
+      </div>
 
-  <div class="form-group">
-    <%= f.label :category_list%>(カンマ区切り)<br>
-    <%= f.text_field :category_list, value: @book.category_list.join(','), id: "book-tags" %><br>
+      <div class="text-center pb-2">
+        <%= f.submit '登録', class:"btn btn-info btn-xs"%>
+        <%= link_to '戻る', :back, class:"btn btn-info btn-xs"%>
+      </div>
+    <% end %>
   </div>
-  <br>
-  <%= f.submit 'submit' ,class:"btn-sm"%>
-<% end %>
+</div>
