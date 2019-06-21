@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # make check authority
+    return unless editable?
   end
 
   def update
@@ -80,5 +80,13 @@ class PostsController < ApplicationController
 
     flash[:danger] = '本を持っていないと感想はかけません'
     redirect_to user_path(current_user.id)
+  end
+
+  def editable?
+    return if @post.editable?(current_user.id)
+
+    flash[:danger] = '編集する権限を持っていません'
+    redirect_to posts_path
+    false
   end
 end

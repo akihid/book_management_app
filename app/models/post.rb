@@ -29,4 +29,8 @@ class Post < ApplicationRecord
 
     search_book_name(book_name).search_user_name(user_name)
   end
+
+  def editable?(user_id)
+    user_id == book.user.id
+  end
 end
