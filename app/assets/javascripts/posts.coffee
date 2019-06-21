@@ -4,7 +4,7 @@
 $(document).on 'change', '#post_publication_id', ->
   $.ajax(
     type: 'GET'
-    url: '/posts/get_image'
+    url: '/posts/book_image'
     data: {
       publication_id: $(this).val()
     }

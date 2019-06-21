@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    # make check authority
+    return unless editable?
   end
 
   def update
@@ -61,8 +61,8 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def get_image
-    render partial: 'books/image', locals: {publication_id: params[:publication_id]}
+  def book_image
+    render partial: 'books/image', locals: { publication_id: params[:publication_id] }
   end
 
   private
@@ -81,5 +81,12 @@ class PostsController < ApplicationController
     flash[:danger] = '本を持っていないと感想はかけません'
     redirect_to user_path(current_user.id)
   end
-  
+
+  def editable?
+    return if @post.editable?(current_user.id)
+
+    flash[:danger] = '編集する権限を持っていません'
+    redirect_to posts_path
+    false
+  end
 end

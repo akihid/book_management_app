@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :goods, only: %i[create destroy]
     collection do
       post :confirm
-      get :get_image
+      get :book_image
     end
   end
 end
