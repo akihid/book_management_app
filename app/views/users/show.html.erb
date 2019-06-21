@@ -1,7 +1,7 @@
 
+<h4 class="card-title mb-4 mt-1">マイページ</h4>
 <div class="card">
   <article class="card-body">
-    <h4 class="card-title mb-4 mt-1">マイページ</h4>
     <div class="row">
       <div class="col-md-3">
         <%= image_tag @user.icon.url, size: '200x200' if @user.icon.present? %>
@@ -12,14 +12,14 @@
       </div> 
     </div>
     <% if current_user.id == @user.id%>
-      <%= link_to '本を登録する', publications_path, class:"btn-sm btn-dark"%>
       <%= link_to '編集', edit_user_registration_path, class:"btn-sm btn-dark"%> 
     <% end %>
   </article>
 </div>
 
 <% if current_user.id == @user.id%>
-  <%= form_with(url: user_path(current_user.id) , method: 'get' , local: true)do |f| %>
+  <%= link_to '本を登録する', publications_path, class:"btn-sm btn-dark"%>
+  <%= form_with(url: user_path(current_user.id), method: 'get', local: true)do |f| %>
     <%= f.label "タイトル" %>:<%= f.text_field :title , value: params[:title] %>
     <%= f.label "著者" %>:<%= f.text_field :author , value: params[:author] %>
     <%= f.label "カテゴリー" %>:<%= f.text_field :category_name , value: params[:category_name] %>
@@ -30,13 +30,23 @@
   <%= paginate @books %>
   <div class="row">
     <% @books.each do |book| %>
-      <div class="col-md-4">
-        <%= book.publication.title %><br>
-        <%= book.publication.author %><br>
-        <%= render 'books/category_list', category_list: book.category_list %><br>
-        <%= image_tag(book.publication.image , size: '200x200')%>
-        <%= link_to '編集', edit_book_path(book.id) ,class:"btn-sm btn-info"%>
-        <%= link_to '削除', book_path(book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"} ,class:"btn-sm btn-danger"%>
+      <div class="col-md-4 mx-auto">
+        <div class="book_container mb-2 ">
+          <div class="row">
+            <div class='col-md-9'>
+              <%= book.publication.title %><br>
+              <%= book.publication.author %><br>
+            </div>
+            <div class='col-md-3'>
+              <%= link_to '編集', edit_book_path(book.id)%>
+              <%= link_to '削除', book_path(book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%>
+            </div>
+          </div>
+          <%= render 'books/category_list', category_list: book.category_list %><br>
+          <div class='text-center'>
+            <%= image_tag(book.publication.image , size: '200x200')%>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
