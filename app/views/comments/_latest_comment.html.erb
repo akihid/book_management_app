@@ -3,7 +3,9 @@
     <div class="media text-muted pt-1">
       <%= image_tag comment.user.icon.url, size: '32x32', class:"mr-2 rounded" if comment.user.icon.present? %>
         <p class="media-body mb-0 small border-bottom border-gray">
-          <strong class="d-block text-gray-dark"><%= comment.user.name %></strong>
+          <strong class="d-block text-gray-dark">
+            <%= link_to comment.user.name, user_path(comment.user.id), class:'text-center'%>
+          </strong>
           <%= comment.content %>
         </p>
         <%= link_to '削除', post_comment_path(comment.post, comment), method: :delete, data:{ confirm: '削除しますがよろしいですか？'}, 
