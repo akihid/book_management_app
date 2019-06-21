@@ -49,7 +49,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    # make check authority
     @comments = @post.comments
     @comment = @post.comments.build
     @good = current_user.goods.find_by(post_id: @post.id)

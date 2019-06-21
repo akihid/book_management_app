@@ -1,7 +1,10 @@
+<h5 class="text-left">
+  <small class="text-muted">※登録する本を検索してください</small>
+</h3>
 
 <%= form_with(url: publications_path , method: 'get' , local: true)do |f| %>
-  <%= f.label "タイトル" %>:<%= f.text_field :title , value: params[:title] %>
-  <%= f.label "著者" %>:<%= f.text_field :author , value: params[:author] %>
+  <%= f.text_field :title, value: params[:title], placeholder: 'タイトルを入力'%>
+  <%= f.text_field :author , value: params[:author], placeholder: '作者を入力'%>
   <%= f.submit "検索" ,class:"btn-sm"%>
   <%= link_to t('btn.clear'), publications_path ,class:"btn-sm btn-dark"%>
 <% end %>

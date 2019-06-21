@@ -1,0 +1,23 @@
+<%= paginate @books %>
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-md-4 mx-auto">
+        <div class="book_container mb-2 ">
+          <div class="row">
+            <div class='col-md-9'>
+              <%= book.publication.title %><br>
+              <%= book.publication.author %><br>
+            </div>
+            <div class='col-md-3'>
+              <%= link_to '編集', edit_user_book_path(current_user.id, book.id)%>
+              <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%>
+            </div>
+          </div>
+          <%= render 'books/category_list', category_list: book.category_list %><br>
+          <div class='text-center'>
+            <%= image_tag(book.publication.image , size: '200x200')%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>

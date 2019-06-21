@@ -23,7 +23,7 @@ class PublicationsController < ApplicationController
       @publication.save
     end
 
-    redirect_to new_book_path(publication: @publication, title: @publication.title)
+    redirect_to new_user_book_path(current_user.id, publication: @publication, title: @publication.title)
   end
 
   private
