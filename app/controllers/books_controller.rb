@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[edit update destroy]
   before_action :authenticate_user!
-  
+
   def index
     @books = current_user.books
   end
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
   end
 
   def edit
-    # make check authority
+    return unless editable?
   end
 
   def update
@@ -46,5 +46,12 @@ class BooksController < ApplicationController
 
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def editable?
+    return if @book.editable?(current_user.id)
+    flash[:danger] = '編集する権限を持っていません'
+    redirect_to user_path(current_user.id)
+    false
   end
 end

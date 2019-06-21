@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
   PER = 8
   before_action :authenticate_user!
-  
+
   def index
     @publications = []
     @publication = Publication.new
@@ -29,15 +29,19 @@ class PublicationsController < ApplicationController
   private
 
   def results_form_api
-    search_word = {}
-    search_word[:title] = params[:title] if params[:title].present?
-    search_word[:author] = params[:author] if params[:author].present?
+    set_search_word
 
     results = RakutenWebService::Books::Book.search(search_word)
     results.each do |result|
       @publications << read(result)
     end
-    @publications = Kaminari.paginate_array(@publications , total_count: results.count).page(params[:page]).per(PER)
+    @publications = Kaminari.paginate_array(@publications, total_count: results.count).page(params[:page]).per(PER)
+  end
+
+  def set_search_word
+    search_word = {}
+    search_word[:title] = params[:title] if params[:title].present?
+    search_word[:author] = params[:author] if params[:author].present?
   end
 
   def read(result)

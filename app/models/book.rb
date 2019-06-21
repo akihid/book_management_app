@@ -19,4 +19,8 @@ class Book < ApplicationRecord
 
     search_title(title).search_author(author)
   end
+
+  def editable?(user_id)
+    user_id == user.id
+  end
 end
