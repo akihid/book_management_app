@@ -50,6 +50,7 @@ class BooksController < ApplicationController
 
   def editable?
     return if @book.editable?(current_user.id)
+
     flash[:danger] = '編集する権限を持っていません'
     redirect_to user_path(current_user.id)
     false
