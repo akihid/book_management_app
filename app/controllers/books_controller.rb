@@ -2,10 +2,6 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[edit update destroy]
   before_action :authenticate_user!
 
-  def index
-    @books = current_user.books
-  end
-
   def new
     @book = current_user.books.build(publication_id: params[:publication])
     redirect_back_to_request("#{params[:title]}はすでに持っているため登録できません") if @book.invalid?
@@ -15,7 +11,7 @@ class BooksController < ApplicationController
     @book = current_user.books.build(book_params)
     @book.save
     flash[:success] = "#{@book.publication.title}の登録完了"
-    redirect_to books_path
+    redirect_to user_path(current_user.id)
   end
 
   def edit
@@ -25,17 +21,16 @@ class BooksController < ApplicationController
   def update
     if @book.update(book_params)
       flash[:success] = "#{@book.publication.title}の編集完了"
-      redirect_to books_path
+      redirect_to user_path(current_user.id)
     else
       render 'edit'
     end
   end
 
   def destroy
-    # make check authority
     @book.destroy
     flash[:danger] = "#{@book.publication.title}の削除完了"
-    redirect_to books_path
+    redirect_to user_path(current_user.id)
   end
 
   private
