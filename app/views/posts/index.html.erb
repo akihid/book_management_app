@@ -22,7 +22,7 @@
             </span>
           <% end %>
         </div>
-        <span class='text-right'>by. <%= post.user.name %></span>
+        <span class='text-right'>by. <%= link_to post.user.name, user_path(post.user.id) %></span>
       
         <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id), class:'text-center'%>
 
