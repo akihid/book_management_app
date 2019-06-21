@@ -1,31 +1,37 @@
 
-<h4 class="card-title mb-4 mt-1">ユーザーページ</h4>
-<div class="card">
+<div class="card bg-light ">
   <article class="card-body">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3 text-center">
         <%= image_tag @user.icon.url, size: '200x200' if @user.icon.present? %>
-        <p class="text-center"><%= @user.name %></p>
+        <p><%= @user.name %></p>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9 card">
         <%= simple_format(@user.profile) %>
       </div> 
     </div>
     <% if current_user.id == @user.id%>
-      <%= link_to '編集', edit_user_registration_path, class:"btn-sm btn-dark"%> 
+      <div class="pt-2 text-right">
+        <%= link_to '編集', edit_user_registration_path, class:"btn-sm btn-dark"%> 
+      </div>
     <% end %>
   </article>
 </div>
 
+
 <% if current_user.id == @user.id%>
-  <%= link_to '本を登録する', publications_path, class:"btn-sm btn-dark"%>
-  <%= form_with(url: user_path(current_user.id), method: 'get', local: true)do |f| %>
-    <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
-    <%= f.text_field :author , value: params[:author], placeholder: '著者を入力' %>
-    <%= f.text_field :category_name , value: params[:category_name], placeholder: 'カテゴリを入力' %>
-    <%= f.submit "検索" ,class:"btn-sm"%>
-    <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
-  <% end %>
+  <div class="card bg-light m-2 p-2">
+    <%= form_with(url: user_path(current_user.id), method: 'get', local: true)do |f| %>
+      <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
+      <%= f.text_field :author , value: params[:author], placeholder: '著者を入力' %>
+      <%= f.text_field :category_name , value: params[:category_name], placeholder: 'カテゴリを入力' %>
+      <%= f.submit "検索" ,class:"btn-sm"%>
+      <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
+    <% end %>
+    <div class="text-right">
+      <%= link_to '本を登録する', publications_path, class:"btn-sm btn-primary"%>
+    </div>
+  </div>
 
   <%= render partial: 'books/index'%>
 <% end %>
