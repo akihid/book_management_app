@@ -63,6 +63,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  gem 'factory_bot_rails' , '~> 4.11'
 end
 
 group :test do
