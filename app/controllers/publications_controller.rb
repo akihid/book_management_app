@@ -29,9 +29,7 @@ class PublicationsController < ApplicationController
   private
 
   def results_form_api
-    set_search_word
-
-    results = RakutenWebService::Books::Book.search(search_word)
+    results = RakutenWebService::Books::Book.search(set_search_word)
     results.each do |result|
       @publications << read(result)
     end
@@ -42,6 +40,7 @@ class PublicationsController < ApplicationController
     search_word = {}
     search_word[:title] = params[:title] if params[:title].present?
     search_word[:author] = params[:author] if params[:author].present?
+    search_word
   end
 
   def read(result)
