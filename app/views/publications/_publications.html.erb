@@ -12,7 +12,7 @@
           <%= f.hidden_field :author, value: publication[:author]%>
           <%= f.hidden_field :title, value: publication[:title]%>
           <%= f.hidden_field :image, value: publication[:image]%>
-          <%= button_tag type: :submit , data: {confirm: "#{publication[:title]}を登録しますがよろしいですか？"} do %>
+          <%= button_tag type: :submit , data: {confirm: "#{publication[:title]}を登録しますがよろしいですか？"}, id:"img_btn" do %>
             <%= image_tag(publication[:image] , size: '200x200')%>
           <% end %>
         <% end %>
