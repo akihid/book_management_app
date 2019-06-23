@@ -112,5 +112,43 @@ describe '感想CRUD機能' , type: :system do
       expect(page).not_to have_content '削除'
     end
   end
+
+  describe 'コメント新規作成' do
+    let(:login_user) {user_a}
+    
+    before do 
+      visit post_path(post_b)
+    end
+
+    it 'コメント成功' do
+      fill_in 'comment[content]' , with: 'コメントのテストです'
+      click_on '送信'
+      expect(page).to have_content 'ユーザーA'
+      expect(page).to have_content 'コメントのテストです'
+    end
+
+    it 'コメント失敗' do
+      fill_in 'comment[content]' , with: ''
+      click_on '送信'
+      expect(page).not_to have_content 'ユーザーA'
+    end
+  end
+
+  describe 'コメント表示テスト' do
+    let(:login_user) {user_a}
+    
+    before do 
+      visit post_path(post_b)
+      fill_in 'comment[content]' , with: 'コメントのテストです'
+      click_on '送信'
+      visit posts_path
+    end
+
+    it '最新のコメント表示されている' do
+      expect(page).to have_content 'ユーザーA'
+      expect(page).to have_content 'コメントのテストです'
+    end
+
+  end
 end
 
