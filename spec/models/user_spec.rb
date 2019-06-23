@@ -17,6 +17,28 @@ RSpec.describe User, type: :model do
         end
       end
 
+      context "失敗" do
+
+        it 'emailが空だとバリデーションエラー' do
+          user = FactoryBot.build(:user, email: '')
+          user.valid?
+          expect(user.errors.messages[:email]).to include("can't be blank")
+        end
+
+        it 'passwordが空だとバリデーションエラー' do
+          user = FactoryBot.build(:user, password: '')
+          user.valid?
+          expect(user.errors.messages[:password]).to include("can't be blank")
+        end
+
+        it 'password_confirmationが空だとバリデーションエラー' do
+          user = FactoryBot.build(:user, password_confirmation: '')
+          user.valid?
+          expect(user.errors.messages[:password_confirmation]).to include("doesn't match Password")
+        end
+
+      end
+
     end
   end
 end
