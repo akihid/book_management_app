@@ -150,5 +150,26 @@ describe '感想CRUD機能' , type: :system do
     end
 
   end
+
+  describe 'いいね機能' do
+    let(:login_user) {user_a}
+    
+    before do 
+      visit post_path(post_b)
+    end
+
+    it 'いいね設定' do
+      page.first(".like-btn").click
+      expect(page).to have_content '1'
+      expect(page).to have_selector '.like-btn-unlike'
+    end
+
+    it 'いいね解除' do
+      page.first(".like-btn").click
+      page.first(".like-btn-unlike").click
+      expect(page).to have_content '0'
+      expect(page).to have_selector '.like-btn'
+    end
+  end
 end
 
