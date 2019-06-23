@@ -1,4 +1,6 @@
-<%= paginate @publications, remote: true if @publications.present? %>
+<div class="row pt-2">
+  <%= paginate @publications, remote: true if @publications.present? %>
+</div>
 <div class="row publication_container">
   <% @publications.each do |publication| %>
     <div class="col-md-3 pb-2">
