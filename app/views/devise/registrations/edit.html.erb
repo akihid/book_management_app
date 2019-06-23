@@ -27,7 +27,7 @@
             <% if @user.icon.present? %>
               <%= image_tag @user.icon.url, size: '200x200' %>
             <% else %>
-              <button type="button" class="btn-sm btn-yellow btn-block">アイコン</button> 
+              <%= image_tag 'default.png', size: '200x200' %>
             <% end %>
           </div>
           <%= f.file_field :icon, class: "image", style: "display:none;", id: "file"%>
