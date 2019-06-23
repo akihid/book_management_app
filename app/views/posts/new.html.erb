@@ -15,7 +15,7 @@
       <div class="bg-light text-center pt-2">
         <div class='form-group'>
           <%= f.label '対象' %>
-          <%= f.collection_select :publication_id, current_user.publications, :id, :title, {prompt: false},
+          <%= f.collection_select :publication_id, current_user.publications, :id, :title,
               selected: params[:post] ? params[:post][:publication_id] : nil, class:"form-control" %>
         </div>
         <div class="book_image">
