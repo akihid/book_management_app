@@ -17,14 +17,14 @@ describe '本CRUD機能' , type: :system do
       visit publications_path
       fill_in 'title' , with: '漫画'
       click_on '検索'
-      page.first("#img_btn").click
+      page.first('#img_btn').click
       page.driver.browser.switch_to.alert.accept
     end
 
     context '新規作成画面でカテゴリを入力' do
 
       it 'カテゴリありで登録される' do
-        (all(".ui-widget-content")[1]).set("漫画")
+        (all('.ui-widget-content')[1]).set('漫画')
         click_on '登録'
         expect(page).to have_selector '.alert-success' , text: '登録完了'
         expect(page).to have_selector '.tag'
@@ -48,16 +48,16 @@ describe '本CRUD機能' , type: :system do
       visit publications_path
       fill_in 'title' , with: '漫画'
       click_on '検索'
-      page.first("#img_btn").click
+      page.first('#img_btn).click
       page.driver.browser.switch_to.alert.accept
-      (all(".ui-widget-content")[1]).set("漫画")
+      (all('.ui-widget-content')[1]).set('漫画')
       click_on '登録'
       page.first("#edit_book").click
     end
 
     context '編集画面でカテゴリを追加' do
       it 'カテゴリが追加され更新される' do
-        (all(".ui-widget-content")[2]).set("漫画2")
+        (all('.ui-widget-content')[2]).set('漫画2')
         click_on '登録'
         click_on '登録'
         expect(page).to have_selector '.alert-success', text: '編集完了'
@@ -68,7 +68,7 @@ describe '本CRUD機能' , type: :system do
     context '編集画面でカテゴリを減らす' do
       it 'カテゴリなしで更新される' do
         # ×クリックでカテゴリが消える
-        page.first(".text-icon").click
+        page.first(''.text-icon').click
         click_on '登録'
         expect(page).to have_selector '.alert-success' , text: '編集完了'
         expect(page).not_to have_selector '.tag'
@@ -85,7 +85,7 @@ describe '編集機能' do
       click_on '検索'
       page.first("#img_btn").click
       page.driver.browser.switch_to.alert.accept
-      (all(".ui-widget-content")[1]).set("漫画")
+      (all('.ui-widget-content')[1]).set('漫画')
       click_on '登録'
       click_on '削除'
     end
@@ -103,7 +103,6 @@ describe '編集機能' do
         expect(page).to have_selector '.tag', text: '漫画'
       end
     end
-  end  
-
+  end
 end
 
