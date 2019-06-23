@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger text-center mx-auto col-6">
+      <%= object.errors.count %>点のエラーが見つかりました
+    </div>
+    <ul class="text-center card bg-warning text-center col-6">
+    <% object.errors.full_messages.each do |msg| %>
+      <li class="cart-title"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
