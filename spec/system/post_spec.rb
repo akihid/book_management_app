@@ -73,6 +73,27 @@ describe '感想CRUD機能' , type: :system do
     end
   end
 
+  describe '削除機能' do
+    let(:login_user) {user_a}
+
+    before do 
+      visit new_post_path
+      fill_in 'post_title' , with: '感想のタイトルです'
+      fill_in 'post_content' , with: '感想の詳細です'
+      click_on '登録'
+      click_on '登録'
+      page.first('#delete_post').click
+    end
+
+    it 'アラートでOK押下時、削除される' do
+      page.driver.browser.switch_to.alert.accept
+      expect(page).not_to have_content '感想のタイトルです'
+    end
+    it 'アラートでキャンセル押下時、削除されない' do
+      page.driver.browser.switch_to.alert.dismiss
+      expect(page).to have_content '感想のタイトルです'
+    end
+  end
 
   describe '一覧の表示確認' do
     let(:login_user) {user_a}
@@ -84,6 +105,11 @@ describe '感想CRUD機能' , type: :system do
     it '異なるユーザーが投稿した感想の編集ボタンは表示されない' do
       expect(page).to have_content 'ユーザーB'
       expect(page).not_to have_content '編集'
+    end
+
+    it '異なるユーザーが投稿した感想の削除ボタンは表示されない' do
+      expect(page).to have_content 'ユーザーB'
+      expect(page).not_to have_content '削除'
     end
   end
 end
