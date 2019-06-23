@@ -1,0 +1,27 @@
+ja:
+  activerecord:
+    models:
+      book: 本
+      publication: 出版物
+      comment: コメント
+      good: いいね
+      post: 感想
+      user: ユーザー
+    attributes:
+      book:
+        category_list: カテゴリー
+      publication:
+        title: タイトル
+        author: 作者
+        image: 画像
+        isbn_code: ISBNコード
+      comment:
+        content: 内容
+      post:
+        title: タイトル
+        content: 内容
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
