@@ -9,7 +9,7 @@
               <%= book.publication.author %><br>
             </div>
             <div class='col-md-3'>
-              <%= link_to '編集', edit_user_book_path(current_user.id, book.id)%>
+              <%= link_to '編集', edit_user_book_path(current_user.id, book.id), id: "edit_book"%>
               <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%>
             </div>
           </div>
