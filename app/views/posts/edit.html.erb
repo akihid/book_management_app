@@ -1,13 +1,4 @@
-<% if @post.errors.any? %>
-  <div id="error_explantion">
-  <h2><%= pluralize(@post.errors.count , '件' )%>のエラーがあります</h2>
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-  </div>
-<% end %>
+<%= render partial: 'errors/error_messages', locals: { object: @post } %>
 
 <div class="row">
   <div class="card bg-light col-md-6">
