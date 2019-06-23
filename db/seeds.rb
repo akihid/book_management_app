@@ -7,18 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # ユーザー作成
-# 20.times do |num|
-#   name = "ユーザー#{num}"
-#   email = "user@#{num}.com"
-#   password = "123456"
-#   password_confirmation = "123456"
-#   User.create!(
-#     name: name,
-#     email: email,
-#     password: password,
-#     password_confirmation: password_confirmation
-#   )
-# end
+1.upto 20 do |num|
+  name = "ユーザー#{num}"
+  email = "user@#{num}.com"
+  password = "123456"
+  password_confirmation = "123456"
+  User.create!(
+    name: name,
+    email: email,
+    password: password,
+    password_confirmation: password_confirmation
+  )
+end
 
 # 出版物作成
 titles = [
