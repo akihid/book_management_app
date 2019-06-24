@@ -36,7 +36,7 @@ h1 {
 }
 
 header{
-  background:#FAFAFA;
+  background: #F8F9FA;
   height: 50px;
   width: 100%;
   margin-bottom: 20px;
@@ -54,9 +54,16 @@ ul{
 header ul a ,header ul p{
   display: block;
   text-decoration: none;
-  color: white;
+  color: #FFF;
   text-align: center;
   margin: 2.5px;
+}
+
+.active {
+  border-bottom: 4px solid #808080;
+  padding-bottom: 3px;
+  color: #808080;
+  font-weight: 700;
 }
 
 li {
