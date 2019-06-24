@@ -14,10 +14,14 @@ class Book < ApplicationRecord
     joins(:publication).where('publications.author like ?', "%#{author}%") if author.present?
   end
 
+  scope :order_new, ->() do
+    order('updated_at DESC')
+  end
+
   scope :search_book, ->(title, author) do
     return false if title.nil? && author.nil?
 
-    search_title(title).search_author(author)
+    search_title(title).search_author(author).order_new
   end
 
   def editable?(user_id)

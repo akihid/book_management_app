@@ -24,6 +24,10 @@ class Post < ApplicationRecord
     joins(:user).where('users.name like ?', "%#{user_name}%") if user_name.present?
   end
 
+  scope :order_new, ->() do
+    order('updated_at DESC')
+  end
+
   scope :search_post, ->(book_name, user_name) do
     return false if book_name.nil? && user_name.nil?
 
