@@ -133,7 +133,7 @@ isbn_codes = [
   )
 
   post = Post.create!(
-    title: Faker::Name.title,
+    title: Faker::Lorem.word,
     content: Faker::Lorem.sentence,
     book_id: book.id
   )
