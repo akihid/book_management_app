@@ -32,7 +32,7 @@
             </span>
           <% end %>
         </div>
-        <span class='text-right text-muted'>by. <%= link_to post.user.name, user_path(post.user.id) ,class:'text-muted' %></span>
+        <span class='text-right text-muted'>投稿者： <%= link_to post.user.name, user_path(post.user.id) ,class:'text-muted' %></span>
       
         <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id), class:'text-center'%>
 
