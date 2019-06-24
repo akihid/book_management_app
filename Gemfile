@@ -76,6 +76,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  gem 'bullet'
 end
 
 group :test do
