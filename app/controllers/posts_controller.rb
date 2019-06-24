@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.includes(:user, :publication).search_post(params[:book_name], params[:user_name])
+    @posts = Post.includes(:user, :publication).search_post(params[:book_name], params[:user_name]).order_new
     @posts = @posts.page(params[:page]).per(PER)
   end
 

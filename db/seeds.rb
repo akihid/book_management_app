@@ -104,7 +104,7 @@ isbn_codes = [
 ]
 
 1.upto 20 do |num|
-  name = "ユーザー#{num}"
+  name = Faker::Name.name
   email = Faker::Internet.email
   password = "123456"
   password_confirmation = "123456"
@@ -133,8 +133,8 @@ isbn_codes = [
   )
 
   post = Post.create!(
-    title: Faker::Pokemon.name,
-    content: Faker::Pokemon.move,
+    title: Faker::Name.title,
+    content: Faker::Lorem.sentence,
     book_id: book.id
   )
 
@@ -142,7 +142,7 @@ isbn_codes = [
     Comment.create!(
       post_id: post.id,
       user_id: User.first.id,
-      content: Faker::Pokemon.name
+      content: Faker::Lorem.sentence
     )
   end
 end
