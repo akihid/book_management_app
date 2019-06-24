@@ -76,6 +76,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  gem 'bullet'
+  gem "rack-mini-profiler"
 end
 
 group :test do
