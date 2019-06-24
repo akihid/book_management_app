@@ -77,6 +77,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails'
   gem 'bullet'
+  gem "rack-mini-profiler"
 end
 
 group :test do

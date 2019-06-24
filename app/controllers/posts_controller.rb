@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.search_post(params[:book_name], params[:user_name])
+    @posts = Post.includes(:user, :publication).search_post(params[:book_name], params[:user_name])
     @posts = @posts.page(params[:page]).per(PER)
   end
 
@@ -49,8 +49,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comments = @post.comments
-    @comment = @post.comments.build
+    @comments = @post.comments.includes(:user)
+    @comment = @post.comments.includes(:user).build
     @good = current_user.goods.find_by(post_id: @post.id)
   end
 
