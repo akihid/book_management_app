@@ -24,6 +24,9 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_link_to (1.0.5)
+      actionpack
+      addressable
     activejob (5.2.3)
       activesupport (= 5.2.3)
       globalid (>= 0.3.6)
@@ -235,8 +238,6 @@ GEM
     public_suffix (3.1.0)
     puma (3.12.1)
     rack (2.0.7)
-    rack-mini-profiler (1.0.2)
-      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.3)
@@ -374,6 +375,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_link_to
   acts-as-taggable-on
   bcrypt_pbkdf (>= 1.0, < 2.0)
   better_errors
@@ -409,7 +411,6 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.11)
-  rack-mini-profiler
   rails (~> 5.2.3)
   rakuten_web_service
   rspec-rails

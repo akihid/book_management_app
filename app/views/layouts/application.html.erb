@@ -16,13 +16,25 @@
       </div>
       <div class="header-right">
         <% if user_signed_in? %> 
-          <li><%= link_to "マイページ", user_path(current_user.id),class:"btn btn-dark btn-lg"%></li>
-          <li><%= link_to "感想を書く" , new_post_path ,class:"btn btn-primary btn-lg"%></li>
-          <li><%= link_to '感想を見る' , posts_path ,class:"btn btn-info btn-lg"%></li>
-          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"btn btn-danger btn-lg"%></li>
+          <li class="nav-item">
+            <%= active_link_to "マイページ", user_path(current_user.id), class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= active_link_to "本を登録する", publications_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= active_link_to "感想を見る", posts_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= active_link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
         <% else %>
-          <li><%= link_to 'サインアップ', new_user_registration_path,class:"btn btn-info btn-lg"%></li>
-          <li><%= link_to 'ログイン', new_user_session_path,class:"btn btn-dark btn-lg"%></li>
+          <li class="nav-item">
+            <%= active_link_to "サインアップ", new_user_registration_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= active_link_to "ログイン", new_user_session_path, class: "nav-link" %>
+          </li>
         <% end %>
       </div>  
     </nav>
