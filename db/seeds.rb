@@ -141,8 +141,8 @@ end
 # 全ユーザーが感想入力
 1.upto 20 do | i |
   Post.create!(
-  title: Faker::Dessert.variety,
-  content: Faker::Dessert.topping,
+  title: Faker::Pokemon.name,
+  content: Faker::Pokemon.move,
   book_id: i
   )
 end
@@ -153,7 +153,7 @@ end
     Comment.create!(
       post_id: i,
       user_id: n,
-      content: Faker::Dessert.variety
+      content: Faker::Pokemon.name
     )
   end
 end
