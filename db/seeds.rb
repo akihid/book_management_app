@@ -6,19 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# ユーザー作成
-1.upto 20 do |num|
-  name = "ユーザー#{num}"
-  email = "user@#{num}.com"
-  password = "123456"
-  password_confirmation = "123456"
-  User.create!(
-    name: name,
-    email: email,
-    password: password,
-    password_confirmation: password_confirmation
-  )
-end
 
 # 出版物作成
 titles = [
@@ -115,45 +102,48 @@ isbn_codes = [
   "9784838730568",
   "9784065151327",
 ]
-20.times do | num |
+
+1.upto 20 do |num|
+  name = "ユーザー#{num}"
+  email = Faker::Internet.email
+  password = "123456"
+  password_confirmation = "123456"
+  user = User.create!(
+    name: name,
+    email: email,
+    password: password,
+    password_confirmation: password_confirmation
+  )
+
   title = titles[num]
   author = authors[num]
   image = images[num]
   isbn_code = isbn_codes[num]
 
-  Publication.create!(
+  publication = Publication.create!(
     title: title,
     author: author,
     image: image,
     isbn_code: isbn_code
   )
-end
 
-## 本の作成
-# 各ユーザーに本を１冊もたせる
-1.upto 20 do | i |
-  Book.create!(
-    user_id: i,
-    publication_id: i
+  book = Book.create!(
+    user_id: user.id,
+    publication_id: publication.id
   )
-end
 
-# 全ユーザーが感想入力
-1.upto 20 do | i |
-  Post.create!(
-  title: Faker::Pokemon.name,
-  content: Faker::Pokemon.move,
-  book_id: i
+  post = Post.create!(
+    title: Faker::Pokemon.name,
+    content: Faker::Pokemon.move,
+    book_id: book.id
   )
-end
-# ランダムなユーザーが全感想にコメント入力
-1.upto 20 do |i|
-  n = rand(1..20)
+
   5.times do |j|
     Comment.create!(
-      post_id: i,
-      user_id: n,
+      post_id: post.id,
+      user_id: User.first.id,
       content: Faker::Pokemon.name
     )
   end
 end
+
