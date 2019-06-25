@@ -92,3 +92,22 @@ a:hover {
 .card{
   margin: 0 auto;
 }
+
+.pagination>li>a {     
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+  color: #696969;
+}
+
+.pagination>li>a:hover {
+  color: #000;
+}
+
+.page-item.active .page-link {
+  background: #696969; 
+  color: #FFF;
+}
