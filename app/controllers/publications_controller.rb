@@ -45,7 +45,6 @@ class PublicationsController < ApplicationController
     search_word[:author] = params[:author] if params[:author].present?
     search_word
   end
-
   def read(result)
     title = result['title']
     author = result['author']
@@ -64,8 +63,8 @@ class PublicationsController < ApplicationController
     result = true
     return result unless hash.present?
     hash.each{|key, value|
-      if value.length < 2 or value.length > 128
-        flash.now[:danger] = "検索文字列には2文字以上、128文字以下を使用してください" 
+      if value.length < 2 or value.length > 60
+        flash.now[:danger] = "検索文字列には2文字以上、60文字以下を使用してください" 
         result = false
         break
       end
