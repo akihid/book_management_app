@@ -24,9 +24,9 @@
     <div class="col-md-4">
       <div class="card bg-light mt-3">
         <div class="card-title row">
-          <span class='col-6 text-left'><%= post.title%></span>
+          <span class='col-8 text-left'><%= post.title%></span>
           <% if post.user.id == current_user.id %>
-            <span class='col-6 text-right'>
+            <span class='col-4 text-right'>
               <%= link_to '編集' , edit_post_path(post.id), id:'edit_post'%>    
               <%= link_to '削除' , post_path(id: post.id) , method: :delete , data:{confirm: "解除してもよろしいですか？"},id:'delete_post' %>
             </span>

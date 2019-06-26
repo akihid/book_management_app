@@ -1,5 +1,5 @@
 <div class="row" style="height: 270px;">
-  <div class="card bg-light col-md-6 h-50">
+  <div class="card bg-light col-md-8 h-50">
     <div class="card-title">
       <h3 class="text-left"><%= @post.title %></h3>
     </div>
@@ -10,7 +10,7 @@
       <%= render partial: 'goods/good', locals: { post: @post, goods: @goods} %>
     </div>
   </div>
-  <div class="card bg-light col-md-6 text-center h-100">
+  <div class="card bg-light col-md-4 text-center h-100">
     <%= @post.publication.title %>
     <p><%= image_tag(@post.publication.image, size: '200x200') %></p>
     <div class="text-right">
@@ -20,7 +20,7 @@
     </div>
   </div>
 </div>
-<div class="row" style="height: 250px;">
+<div class="row" style="min-height: 250px;">
   <h5 class="text-left">感想</h5>
   <div class="card bg-light col-md-12 h-75">
     <div class="card-body">
