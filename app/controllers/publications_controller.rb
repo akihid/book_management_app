@@ -29,16 +29,19 @@ class PublicationsController < ApplicationController
   private
 
   def results_form_api
+    return unless check_length_hash?(set_search_word)
+    
     results = RakutenWebService::Books::Book.search(set_search_word)
     results.each do |result|
       @publications << read(result)
     end
     @publications = Kaminari.paginate_array(@publications, total_count: results.count).page(params[:page]).per(PER)
+    search_result_is_present?(@publications)
   end
 
   def set_search_word
     search_word = {}
-    search_word[:title] = params[:title] if params[:title].present?
+    search_word[:title] = params[:title] if params[:title].present? 
     search_word[:author] = params[:author] if params[:author].present?
     search_word
   end
@@ -55,6 +58,19 @@ class PublicationsController < ApplicationController
       image: image,
       isbn_code: isbn_code
     }
+  end
+
+  def check_length_hash?(hash)
+    result = true
+    return result unless hash.present?
+    hash.each{|key, value|
+      if value.length < 2 or value.length > 128
+        flash.now[:danger] = "検索文字列には2文字以上、128文字以下を使用してください" 
+        result = false
+        break
+      end
+    }
+    result
   end
 
   def publication_params

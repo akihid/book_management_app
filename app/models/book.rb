@@ -15,7 +15,7 @@ class Book < ApplicationRecord
   end
 
   scope :order_new, ->() do
-    order('updated_at DESC')
+    order('books.updated_at DESC')
   end
 
   scope :search_book, ->(title, author) do

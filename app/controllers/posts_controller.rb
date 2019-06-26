@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.includes(:user, :publication).search_post(params[:book_name], params[:user_name]).order_new
     @posts = @posts.page(params[:page]).per(PER)
+    search_result_is_present?(@posts)
   end
 
   def new

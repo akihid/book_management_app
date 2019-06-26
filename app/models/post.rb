@@ -6,8 +6,6 @@ class Post < ApplicationRecord
   has_many :tags, through: :posts
   has_one :user, through: :book
   has_one :publication, through: :book
-  # delegate :publication, to: :book
-  # delegate :user, to: :book
 
   validates :title, presence: true, length: { maximum: 20 }
   validates :content, presence: true, length: { maximum: 200 }
@@ -25,7 +23,7 @@ class Post < ApplicationRecord
   end
 
   scope :order_new, ->() do
-    order('updated_at DESC')
+    order('posts.updated_at DESC')
   end
 
   scope :search_post, ->(book_name, user_name) do

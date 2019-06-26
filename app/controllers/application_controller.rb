@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
     redirect_back(fallback_location: request.url)
     flash[:danger] = err_msg
   end
+
+  def search_result_is_present?(index)
+    flash.now[:danger] = "検索結果がありませんでした"  unless index.present?
+  end
+
 end
