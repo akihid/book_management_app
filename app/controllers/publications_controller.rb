@@ -29,7 +29,6 @@ class PublicationsController < ApplicationController
   private
 
   def results_form_api
-    # binding.pry
     return unless check_length_hash?(set_search_word)
     
     results = RakutenWebService::Books::Book.search(set_search_word)
@@ -37,6 +36,7 @@ class PublicationsController < ApplicationController
       @publications << read(result)
     end
     @publications = Kaminari.paginate_array(@publications, total_count: results.count).page(params[:page]).per(PER)
+    search_result_is_present?(@publications)
   end
 
   def set_search_word
