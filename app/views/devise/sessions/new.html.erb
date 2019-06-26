@@ -2,9 +2,6 @@
   <article class="card-body">
   <%= link_to 'サインアップ', new_user_registration_path, class:"float-right btn btn-outline-primary"%>
     <h4 class="card-title mb-4 mt-1">ログイン</h4>
-    <p>
-      <a href="" class="btn btn-block btn-outline-info"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
-    </p>
     <hr>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
@@ -24,4 +21,3 @@
     <% end %>                                                                                             
   </article>
 </div> <!-- card.// -->
-
