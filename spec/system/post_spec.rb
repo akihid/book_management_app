@@ -16,8 +16,8 @@ describe '感想CRUD機能' , type: :system do
 
   before do
     visit user_session_path
-    fill_in 'Email' , with: login_user.email
-    fill_in 'Password' , with: login_user.password
+    fill_in 'メールアドレス' , with: login_user.email
+    fill_in 'パスワード' , with: login_user.password
     click_on 'Log in'
   end
 
@@ -29,22 +29,22 @@ describe '感想CRUD機能' , type: :system do
     end
 
     it '登録ボタン押下後、確認画面が表示される' do
-      fill_in 'post_title' , with: '感想のタイトルです'
-      fill_in 'post_content' , with: '感想の詳細です'
+      fill_in 'タイトル' , with: '感想のタイトルです'
+      fill_in '内容' , with: '感想の詳細です'
       click_on '登録'
       expect(page).to have_content '感想の詳細です'
     end
 
     it '確認画面で登録後一覧画面に表示される' do
-      fill_in 'post_title' , with: '感想のタイトルです'
-      fill_in 'post_content' , with: '感想の詳細です'
+      fill_in 'タイトル' , with: '感想のタイトルです'
+      fill_in '内容' , with: '感想の詳細です'
       click_on '登録'
       click_on '登録'
       expect(page).to have_content '感想のタイトルです'
     end
     it '確認画面から戻った際に入力情報が保持される' do
-      fill_in 'post_title' , with: '感想のタイトル確認です'
-      fill_in 'post_content' , with: '感想の詳細確認です'
+      fill_in 'タイトル' , with: '感想のタイトル確認です'
+      fill_in '内容' , with: '感想の詳細確認です'
       select '出版物2', from: 'post[publication_id]'
       click_on '登録'
       click_on '修正する'
@@ -58,16 +58,16 @@ describe '感想CRUD機能' , type: :system do
 
     before do 
       visit new_post_path
-      fill_in 'post_title' , with: '感想のタイトルです'
-      fill_in 'post_content' , with: '感想の詳細です'
+      fill_in 'タイトル' , with: '感想のタイトルです'
+      fill_in '内容' , with: '感想の詳細です'
       click_on '登録'
       click_on '登録'
       page.first('#edit_post').click
     end
 
     it '編集後、一覧画面に更新された内容が表示される' do
-      fill_in 'post_title' , with: '感想のタイトル更新です'
-      fill_in 'post_content' , with: '感想の詳細更新です'
+      fill_in 'タイトル' , with: '感想のタイトル更新です'
+      fill_in '内容' , with: '感想の詳細更新です'
       click_on '登録'
       expect(page).to have_content '感想のタイトル更新です'
     end
@@ -78,8 +78,8 @@ describe '感想CRUD機能' , type: :system do
 
     before do 
       visit new_post_path
-      fill_in 'post_title' , with: '感想のタイトルです'
-      fill_in 'post_content' , with: '感想の詳細です'
+      fill_in 'タイトル' , with: '感想のタイトルです'
+      fill_in '内容' , with: '感想の詳細です'
       click_on '登録'
       click_on '登録'
       page.first('#delete_post').click
@@ -145,7 +145,6 @@ describe '感想CRUD機能' , type: :system do
     end
 
     it '最新のコメント表示されている' do
-      expect(page).to have_content 'ユーザーA'
       expect(page).to have_content 'コメントのテストです'
     end
 

@@ -5,8 +5,8 @@ describe '本CRUD機能' , type: :system do
 
   before do
     visit user_session_path
-    fill_in 'Email' , with: login_user.email
-    fill_in 'Password' , with: login_user.password
+    fill_in 'メールアドレス' , with: login_user.email
+    fill_in 'パスワード' , with: login_user.password
     click_on 'Log in'
   end
 
@@ -48,7 +48,7 @@ describe '本CRUD機能' , type: :system do
       visit publications_path
       fill_in 'title' , with: '漫画'
       click_on '検索'
-      page.first('#img_btn).click
+      page.first('#img_btn').click
       page.driver.browser.switch_to.alert.accept
       (all('.ui-widget-content')[1]).set('漫画')
       click_on '登録'
@@ -68,7 +68,7 @@ describe '本CRUD機能' , type: :system do
     context '編集画面でカテゴリを減らす' do
       it 'カテゴリなしで更新される' do
         # ×クリックでカテゴリが消える
-        page.first(''.text-icon').click
+        page.first('.text-icon').click
         click_on '登録'
         expect(page).to have_selector '.alert-success' , text: '編集完了'
         expect(page).not_to have_selector '.tag'
