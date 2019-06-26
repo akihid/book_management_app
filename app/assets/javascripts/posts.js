@@ -5,7 +5,5 @@ $(document).on('change', '#post_publication_id', function() {
     data: {
       publication_id: $(this).val()
     }
-  }).done(function(data) {
-    return $('.book_image').html(data);
   });
 });
