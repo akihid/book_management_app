@@ -9,8 +9,8 @@
           <%= f.collection_select :publication_id, current_user.publications, :id, :title,
               selected: params[:post] ? params[:post][:publication_id] : nil, class:"form-control" %>
         </div>
-        <div class="book_image">
-          <%= render partial: 'books/image', locals: {publication_id: current_user.publications.first.id} %>
+        <div id="book_image">
+          <%= render partial: 'book_image', locals: {publication_id: current_user.publications.first.id} %>
         </div>
       </div>
       <div class='form-group'>

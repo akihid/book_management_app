@@ -62,7 +62,10 @@ class PostsController < ApplicationController
   end
 
   def book_image
-    render partial: 'books/image', locals: { publication_id: params[:publication_id] }
+    respond_to do |format|
+      format.js { render :book_image, locals: { publication_id: params[:publication_id] }}
+      # render partial: 'books/image', locals: { publication_id: params[:publication_id] }
+    end
   end
 
   private
