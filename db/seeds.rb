@@ -141,7 +141,7 @@ isbn_codes = [
   5.times do |j|
     Comment.create!(
       post_id: post.id,
-      user_id: User.first.id,
+      user_id: User.order("RANDOM()").first.id,
       content: Faker::Lorem.sentence
     )
   end
