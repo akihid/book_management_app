@@ -2,11 +2,11 @@
 <div class="card bg-light ">
   <article class="card-body">
     <div class="row">
-      <div class="col-md-3 text-center">
+      <div class="col-3 text-center">
         <%= image_tag @user.icon.url, size: '200x200' %>
         <p><%= @user.name %></p>
       </div>
-      <div class="col-md-9 card">
+      <div class="col-9 card">
         <%= simple_format(@user.profile) %>
       </div> 
     </div>

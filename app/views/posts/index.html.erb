@@ -21,7 +21,7 @@
 </div>
 <div class="row">
   <% @posts.each do |post|%>
-    <div class="col-md-4">
+    <div class="col-4">
       <div class="card bg-light mt-3">
         <div class="card-title row">
           <span class='col-8 text-left'><%= post.title%></span>
@@ -36,7 +36,7 @@
       
         <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id), class:'text-center'%>
 
-        <div class="card bg-light col-md-12">
+        <div class="card bg-light col-12">
           <div id="comments_area" class="latest_comments_area">
             <%= render partial: 'comments/latest_comment', locals: { comment: post.comments.last, post: post } %>
           </div>

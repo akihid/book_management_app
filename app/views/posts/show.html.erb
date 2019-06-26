@@ -1,5 +1,5 @@
 <div class="row" style="height: 270px;">
-  <div class="card bg-light col-md-8 h-50">
+  <div class="card bg-light col-8 h-50">
     <div class="card-title">
       <h3 class="text-left"><%= @post.title %></h3>
     </div>
@@ -10,7 +10,7 @@
       <%= render partial: 'goods/good', locals: { post: @post, goods: @goods} %>
     </div>
   </div>
-  <div class="card bg-light col-md-4 text-center h-100">
+  <div class="card bg-light col-4 text-center h-100">
     <%= @post.publication.title %>
     <p><%= image_tag(@post.publication.image, size: '200x200') %></p>
     <div class="text-right">
@@ -22,7 +22,7 @@
 </div>
 <div class="row" style="min-height: 250px;">
   <h5 class="text-left">感想</h5>
-  <div class="card bg-light col-md-12 h-75">
+  <div class="card bg-light col-12 h-75">
     <div class="card-body">
       <%= simple_format(@post.content) %>
     </div>
@@ -30,7 +30,7 @@
 </div>
 <div class="row">
   <h5 class="text-left">コメント一覧</h5>
-  <div class="card bg-light col-md-12">
+  <div class="card bg-light col-12">
     <div id="comments_area">
       <%= render partial: 'comments/index', locals: { comments: @comments, post: @post } %>
     </div>

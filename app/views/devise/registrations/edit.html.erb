@@ -5,7 +5,7 @@
       <%= render partial: 'errors/error_messages', locals: { object: resource } %>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-6">
           <div class="form-group">
             <%= f.label :name %><br />
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class:'form-control'%>
@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-6">
           <div id="img_field" class="field image" onClick="$('#file').click()" >
             <% if @user.icon.present? %>
               <%= image_tag @user.icon.url, size: '200x200' %>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-6">
           <button type="button" class="btn-sm btn-secondary btn-block" data-toggle="collapse" data-target="#pwd_field" aria-expanded="false" aria-controls="pwd_field">
             パスワード変更
           </button>
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-6">
           <div class="text-center">
             <%= f.submit '更新', class:"btn btn-info"%>
             <%= link_to "戻る", :back, class:"btn btn-primary"%>
