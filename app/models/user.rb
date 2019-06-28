@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :goods, dependent: :destroy
   has_many :good_posts, through: :goods, source: :posts
+  has_many :comment_posts, through: :comments, source: :post
   has_many :book_posts, through: :books, source: :posts
 
   validates :name, presence: true, length: { maximum: 10 }

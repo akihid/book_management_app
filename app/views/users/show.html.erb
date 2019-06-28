@@ -43,7 +43,7 @@
     </div>
     <div class="tab-pane" id="tab_comment" role="tabpanel">
       <p>
-        いいねした感想を一覧表示する
+        <%= render partial: 'posts/index', locals: {posts: @comment_posts} %>
       </p>
     </div>
     <div class="tab-pane" id="tab_good" role="tabpanel">
