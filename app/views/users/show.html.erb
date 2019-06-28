@@ -22,17 +22,17 @@
   <div class="row card mt-2">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="tab-header active">
-        <a aria-controls="tab_1" data-toggle="tab" href="#tab_post" role="tab" class="active">投稿した感想</a>
+        <a aria-controls="tab_1" data-toggle="tab" href="#tab_post" role="tab" class="btn btn-sm active">投稿した感想</a>
       </li>
       <li role="presentation" class="tab-header">
-        <a aria-controls="tab_2" data-toggle="tab" href="#tab_comment" role="tab">コメントした感想</a>
+        <a aria-controls="tab_2" data-toggle="tab" href="#tab_comment" role="tab" class="btn btn-sm">コメントした感想</a>
       </li>
       <li role="presentation" class="tab-header">
-        <a aria-controls="tab_3" data-toggle="tab" href="#tab_good" role="tab">いいねした感想</a>
+        <a aria-controls="tab_3" data-toggle="tab" href="#tab_good" role="tab" class="btn btn-sm">いいねした感想</a>
       </li>
       <% if current_user.id == @user.id%>
         <li role="presentation" class="tab-header">
-          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab">持っている本</a>
+          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm">持っている本</a>
         </li>
       <% end %>
     </ul>
