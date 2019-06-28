@@ -38,7 +38,7 @@ describe '感想CRUD機能' , type: :system do
       expect(page).not_to have_content 'postのテストタイトル'
     end
   end
-  
+
   describe 'ユーザーページのいいね表示確認' do
     let(:login_user) {user_a}
 
@@ -53,6 +53,24 @@ describe '感想CRUD機能' , type: :system do
       Good.create(post_id: post_b.id, user_id: user_c.id)
       visit user_path(user_b.id)
       page.first("#good-tab").click
+      expect(page).not_to have_content 'postのテストタイトル'
+    end
+  end
+
+  describe 'ユーザーページのコメント表示確認' do
+    let(:login_user) {user_a}
+
+    it 'コメントがある場合' do
+      Comment.create(post_id: post_b.id, user_id: user_c.id, content: "コメントのテストです")
+      visit user_path(user_c.id)
+      page.first("#comment-tab").click
+      expect(page).to have_content 'postのテストタイトル'
+    end
+
+    it 'コメントがない場合' do
+      Comment.create(post_id: post_b.id, user_id: user_c.id, content: "コメントのテストです")
+      visit user_path(user_b.id)
+      page.first("#comment-tab").click
       expect(page).not_to have_content 'postのテストタイトル'
     end
   end
