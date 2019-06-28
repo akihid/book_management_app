@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :publications, through: :books
   has_many :comments, dependent: :destroy
   has_many :goods, dependent: :destroy
-  has_many :posts, through: :goods
+  has_many :good_posts, through: :goods, source: :posts
+  has_many :book_posts, through: :books, source: :posts
 
   validates :name, presence: true, length: { maximum: 10 }
   validates :email, presence: true, length: { maximum: 255 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }

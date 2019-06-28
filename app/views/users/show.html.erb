@@ -39,9 +39,7 @@
   </div>
   <div class="tab-content">
     <div class="tab-pane active" id="tab_post" role="tabpanel">
-        <p>
-          投稿した感想を一覧表示する
-        </p>
+      <%= render partial: 'posts/index', locals: {posts: @posts} %>
     </div>
     <div class="tab-pane" id="tab_comment" role="tabpanel">
       <p>
