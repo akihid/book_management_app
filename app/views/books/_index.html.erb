@@ -11,8 +11,10 @@
             <%= book.publication.author %><br>
           </div>
           <div class='col-3'>
-            <%= link_to '編集', edit_user_book_path(current_user.id, book.id), id: "edit_book"%>
-            <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%>
+            <% if current_user.id == book.user_id%>
+              <%= link_to '編集', edit_user_book_path(current_user.id, book.id), id: "edit_book"%>
+              <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%>
+            <% end %>
           </div>
         </div>
         <%= render 'books/category_list', category_list: book.category_list %><br>

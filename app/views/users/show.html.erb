@@ -18,17 +18,54 @@
   </article>
 </div>
 
-
-<% if current_user.id == @user.id%>
-  <div class="card bg-light m-2 p-2">
-    <%= form_with(url: user_path(current_user.id), method: 'get', local: true)do |f| %>
-      <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
-      <%= f.text_field :author , value: params[:author], placeholder: '著者を入力' %>
-      <%= f.text_field :category_name , value: params[:category_name], placeholder: 'カテゴリを入力' %>
-      <%= f.submit "検索" ,class:"btn-sm"%>
-      <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
+<div>
+  <div class="row card mt-2">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="tab-header active">
+        <a aria-controls="tab_1" data-toggle="tab" href="#tab_post" role="tab" class="active">投稿した感想</a>
+      </li>
+      <li role="presentation" class="tab-header">
+        <a aria-controls="tab_2" data-toggle="tab" href="#tab_comment" role="tab">コメントした感想</a>
+      </li>
+      <li role="presentation" class="tab-header">
+        <a aria-controls="tab_3" data-toggle="tab" href="#tab_good" role="tab">いいねした感想</a>
+      </li>
+      <% if current_user.id == @user.id%>
+        <li role="presentation" class="tab-header">
+          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab">持っている本</a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab_post" role="tabpanel">
+        <p>
+          投稿した感想を一覧表示する
+        </p>
+    </div>
+    <div class="tab-pane" id="tab_comment" role="tabpanel">
+      <p>
+        いいねした感想を一覧表示する
+      </p>
+    </div>
+    <div class="tab-pane" id="tab_good" role="tabpanel">
+      <p>
+        コメントした感想を一覧表示する
+      </p>
+    </div>
+    <% if current_user.id == @user.id%>
+      <div class="tab-pane" id="tab_book" role="tabpanel">
+        <div class="card bg-light m-2 p-2">
+          <%= form_with(url: user_path(current_user.id), method: 'get', local: true) do |f| %>
+            <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
+            <%= f.text_field :author , value: params[:author], placeholder: '著者を入力' %>
+            <%= f.text_field :category_name , value: params[:category_name], placeholder: 'カテゴリを入力' %>
+            <%= f.submit "検索" ,class:"btn-sm"%>
+            <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
+          <% end %>
+        </div>
+        <%= render partial: 'books/index'%>
+      </div>
     <% end %>
   </div>
-
-  <%= render partial: 'books/index'%>
-<% end %>
+</div>
