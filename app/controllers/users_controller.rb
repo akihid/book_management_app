@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
     @posts = @user.book_posts.page(params[:page]).per(PER)
     @comment_posts = @user.comment_posts.includes(:publication, :user).page(params[:page]).per(PER).distinct
+    @good_posts = @user.good_posts.includes(:publication, :user).page(params[:page]).per(PER)
   end
 
   private
