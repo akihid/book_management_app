@@ -59,7 +59,13 @@ header ul a ,header ul p{
   margin: 2.5px;
 }
 
-.active {
+.nav-item > .active{
+  border-bottom: 4px solid #808080;
+  padding-bottom: 3px;
+  color: #808080;
+  font-weight: 700;
+}
+.tab-header > .active{
   border-bottom: 4px solid #808080;
   padding-bottom: 3px;
   color: #808080;

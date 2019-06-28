@@ -1,0 +1,29 @@
+<div class="row pt-2">
+  <%= paginate posts %>
+</div>
+<div class="row">
+  <% posts.each do |post|%>
+    <div class="col-4">
+      <div class="card bg-light mt-3">
+        <div class="card-title row">
+          <span class='col-8 text-left'><%= post.title%></span>
+          <% if post.user.id == current_user.id %>
+            <span class='col-4 text-right'>
+              <%= link_to '編集' , edit_post_path(post.id), id:'edit_post'%>    
+              <%= link_to '削除' , post_path(id: post.id) , method: :delete , data:{confirm: "解除してもよろしいですか？"},id:'delete_post' %>
+            </span>
+          <% end %>
+        </div>
+        <span class='text-right text-muted'>投稿者： <%= link_to post.user.name, user_path(post.user.id) ,class:'text-muted' %></span>
+      
+        <%= link_to image_tag(post.publication.image, size: '200x200') , post_path(post.id), class:'text-center'%>
+
+        <div class="card bg-light col-12">
+          <div id="comments_area" class="latest_comments_area">
+            <%= render partial: 'comments/latest_comment', locals: { comment: post.comments.last, post: post } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

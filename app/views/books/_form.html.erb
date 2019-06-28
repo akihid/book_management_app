@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="card bg-light col-md-6">
+  <div class="card bg-light col-6">
     <%= form_with(model: @book, url: chose_new_or_edit, local: true) do |f| %>
-      <div class="card bg-light col-md-6 text-center h-100">
+      <div class="card bg-light col-6 text-center h-100">
         <div class='form-group'>
           <%= @book.publication.title%><br>
           <%= @book.publication.author%><br>

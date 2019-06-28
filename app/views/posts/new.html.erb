@@ -1,7 +1,7 @@
 <%= render partial: 'errors/error_messages', locals: { object: @post } %>
 
 <div class="row">
-  <div class="card bg-light col-md-6">
+  <div class="card bg-light col-6">
     <%= form_with(model: @post, local: true, url: confirm_posts_path) do |f|%>
       <div class="bg-light text-center pt-2">
         <div class='form-group'>
