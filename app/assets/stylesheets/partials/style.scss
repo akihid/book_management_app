@@ -1,0 +1,25 @@
+#img_field {
+  border: solid 1px #EDBC6C;
+  color: #666;
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  transition: 0.3s ease-out;
+  margin: 0 auto;
+}
+
+#img_field:hover {
+  background-color: #EDBC6C;
+  transition: 0.3s ease-out;
+  opacity: 0.9;
+}
+
+#img_field:hover i {
+  transition: 0.3s ease-out;
+  display: block;
+  color: #fff;
+}

@@ -1,0 +1,19 @@
+<div class="card bg-light">
+  <%= form_with(url: posts_path, method: 'get' , local: true)do |f| %>
+    <div class="row">
+      <div class='col-6 form-group'>
+        <%= f.label "書籍名" %>
+        <%= f.text_field :book_name , value: params[:book_name], placeholder: '感想が書かれた書籍名で検索',class:"form-control"%>
+      </div>
+      <div class='col-6 form-group'>
+        <%= f.label "ユーザー" %>
+        <%= f.text_field :user_name , value: params[:user_name], placeholder: '感想を書いたユーザー名で検索',class:"form-control"%>
+      </div>
+    </div>
+    <div class='text-right'>
+      <%= f.submit "検索" ,class:"btn-sm"%>
+      <%= link_to 'クリア', posts_path, class:"btn-sm btn-dark"%>
+    </div>
+  <% end %>
+</div>
+<%= render partial: 'index', locals: {posts: @posts} %>

@@ -1,0 +1,33 @@
+<%= render partial: 'errors/error_messages', locals: { object: @post } %>
+
+<div class="row">
+  <div class="card bg-light col-6">
+    <%= form_with(model: @post, local: true, url: confirm_posts_path) do |f|%>
+      <div class="bg-light text-center pt-2">
+        <div class='form-group'>
+          <%= f.label '対象' %>
+          <%= f.collection_select :publication_id, current_user.publications, :id, :title,
+              selected: params[:post] ? params[:post][:publication_id] : nil, class:"form-control" %>
+        </div>
+        <div id="book_image">
+          <%= render partial: 'book_image', locals: {image: current_user.publications.first.image} %>
+        </div>
+      </div>
+      <div class='form-group'>
+        <%= f.label :title %>
+        <%= f.text_field :title ,class:"form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :content %>
+        <%= f.text_area :content , class:"form-control"%>
+      </div>
+      <div class="text-center pb-2">
+        <%= f.submit '登録', class:"btn btn-info btn-xs"%>
+        <%= link_to '一覧へ' , posts_path, class:"btn btn-info btn-xs"%>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>

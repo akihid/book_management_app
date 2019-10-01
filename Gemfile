@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -36,10 +36,33 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'dotenv-rails'
+gem "bootstrap", ">= 4.3.1"
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'rakuten_web_service'
+gem 'devise'
+gem 'carrierwave'
+gem 'acts-as-taggable-on'
+gem 'font-awesome-sass'
+gem 'kaminari'
+gem 'faker'
+gem 'fog-aws'
+gem "bcrypt_pbkdf", ">= 1.0", "< 2.0"
+gem "ed25519", ">= 1.2", "< 2.0"
+gem 'unicorn' # アプリケーションサーバのunicorn
+gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+gem 'active_link_to'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'database_cleaner'
+  gem 'factory_bot_rails' , '~> 4.11'
+  gem 'capistrano', '3.6.0' # capistranoのツール一式
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
@@ -54,6 +77,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  gem 'bullet'
+  # gem "rack-mini-profiler"
 end
 
 group :test do
@@ -62,6 +87,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

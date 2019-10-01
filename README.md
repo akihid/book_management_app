@@ -36,10 +36,6 @@ Rails 5.2.3
 - [ ] コメント削除機能
   - [ ] コメント削除はコメントした本人のみ可能
 - [ ] コメント機能といいね機能についてはページ遷移なしで実行できる
-- [ ] フォロー機能
-  - [ ] ユーザーをフォローすることができる
-- [ ] メッセージ機能
-  - [ ] ユーザー間でメッセージを送り合うことができる
 
 
 ## カタログ設計
@@ -58,6 +54,11 @@ https://docs.google.com/spreadsheets/d/1gdeDxyxdIf_U3A0NWRtomIqHprqu-0Awi_F2DwC_
 https://docs.google.com/spreadsheets/d/1GunDeUpsYFrHrl7eVSnY0QFHW2LYBnhZ-TkU5CQSVVo/view?usp=sharing
 
 ## 使用予定Gem
-* device
-* kaminari
-* ransack
+* acts-as-taggable-on
+* bootstrap
+* carrierwave
+* devise
+* dotenv-rails
+* jquery-rails
+* jquery-ui-rails
+* rakuten_web_service
