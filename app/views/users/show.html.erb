@@ -39,13 +39,13 @@
   </div>
   <div class="tab-content">
     <div class="tab-pane active" id="tab_post" role="tabpanel">
-      <%= render partial: 'posts/index', locals: {posts: @posts} %>
+      <%= render partial: 'posts/index', locals: {posts: @posts.includes(:user, :publication)} %>
     </div>
     <div class="tab-pane" id="tab_comment" role="tabpanel">
-      <%= render partial: 'posts/index', locals: {posts: @comment_posts} %>
+      <%= render partial: 'posts/index', locals: {posts: @comment_posts.includes(:user, :publication)} %>
     </div>
     <div class="tab-pane" id="tab_good" role="tabpanel">
-      <%= render partial: 'posts/index', locals: {posts: @good_posts} %>
+      <%= render partial: 'posts/index', locals: {posts: @good_posts.includes(:user, :publication)} %>
     </div>
     <% if current_user.id == @user.id%>
       <div class="tab-pane" id="tab_book" role="tabpanel">
