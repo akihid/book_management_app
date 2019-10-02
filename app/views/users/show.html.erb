@@ -21,8 +21,8 @@
 <div>
   <div class="row card mt-2">
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="tab-header active">
-        <a aria-controls="tab_1" data-toggle="tab" href="#tab_post" role="tab" class="btn btn-sm active" id="post-tab">投稿した感想</a>
+      <li role="presentation" class="tab-header <%= "#{params[:commit].present? ? '' : 'active'}" %> }">
+        <a aria-controls="tab_1" data-toggle="tab" href="#tab_post" role="tab" class="btn btn-sm <%= "#{params[:commit].present? ? '' : 'active'}" %> " id="post-tab">投稿した感想</a>
       </li>
       <li role="presentation" class="tab-header">
         <a aria-controls="tab_2" data-toggle="tab" href="#tab_comment" role="tab" class="btn btn-sm" id="comment-tab">コメントした感想</a>
@@ -31,24 +31,24 @@
         <a aria-controls="tab_3" data-toggle="tab" href="#tab_good" role="tab" class="btn btn-sm" id="good-tab">いいねした感想</a>
       </li>
       <% if current_user.id == @user.id%>
-        <li role="presentation" class="tab-header">
-          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm" id="book-tab">持っている本</a>
+        <li role="presentation" class="tab-header <%= "#{params[:commit].present? ? 'active' : ''}" %>">
+          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="book-tab">持っている本</a>
         </li>
       <% end %>
     </ul>
   </div>
   <div class="tab-content">
-    <div class="tab-pane active" id="tab_post" role="tabpanel">
-      <%= render partial: 'posts/index', locals: {posts: @posts} %>
+    <div class="tab-pane <%= "#{params[:commit].present? ? '' : 'active'}" %>" id="tab_post" role="tabpanel">
+      <%= render partial: 'posts/index', locals: {posts: @posts.includes(:user, :publication)} %>
     </div>
     <div class="tab-pane" id="tab_comment" role="tabpanel">
-      <%= render partial: 'posts/index', locals: {posts: @comment_posts} %>
+      <%= render partial: 'posts/index', locals: {posts: @comment_posts.includes(:user, :publication)} %>
     </div>
     <div class="tab-pane" id="tab_good" role="tabpanel">
-      <%= render partial: 'posts/index', locals: {posts: @good_posts} %>
+      <%= render partial: 'posts/index', locals: {posts: @good_posts.includes(:user, :publication)} %>
     </div>
     <% if current_user.id == @user.id%>
-      <div class="tab-pane" id="tab_book" role="tabpanel">
+      <div class="tab-pane <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="tab_book" role="tabpanel">
         <div class="card bg-light m-2 p-2">
           <%= form_with(url: user_path(current_user.id), method: 'get', local: true) do |f| %>
             <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
