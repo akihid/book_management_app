@@ -27,6 +27,7 @@ describe '本CRUD機能' , type: :system do
         (all('.ui-widget-content')[1]).set('漫画')
         click_on '登録'
         expect(page).to have_selector '.alert-success' , text: '登録完了'
+        page.first("#book-tab").click
         expect(page).to have_selector '.tag'
       end
     end
@@ -36,6 +37,7 @@ describe '本CRUD機能' , type: :system do
       it 'カテゴリなしで登録される' do
         click_on '登録'
         expect(page).to have_selector '.alert-success' , text: '登録完了'
+        page.first("#book-tab").click
         expect(page).not_to have_selector '.tag'
       end
     end
@@ -52,6 +54,7 @@ describe '本CRUD機能' , type: :system do
       page.driver.browser.switch_to.alert.accept
       (all('.ui-widget-content')[1]).set('漫画')
       click_on '登録'
+      page.first("#book-tab").click
       page.first("#edit_book").click
     end
 
@@ -61,6 +64,7 @@ describe '本CRUD機能' , type: :system do
         click_on '登録'
         click_on '登録'
         expect(page).to have_selector '.alert-success', text: '編集完了'
+        page.first("#book-tab").click
         expect(page).to have_selector '.tag', text: '漫画2'
       end
     end
@@ -71,12 +75,14 @@ describe '本CRUD機能' , type: :system do
         page.first('.text-icon').click
         click_on '登録'
         expect(page).to have_selector '.alert-success' , text: '編集完了'
+        page.first("#book-tab").click
+        page.first("#book-tab").click
         expect(page).not_to have_selector '.tag'
       end
     end
   end
 
-describe '編集機能' do
+  describe '削除機能' do
     let(:login_user) {user_a}
 
     before do 
@@ -87,6 +93,7 @@ describe '編集機能' do
       page.driver.browser.switch_to.alert.accept
       (all('.ui-widget-content')[1]).set('漫画')
       click_on '登録'
+      page.first("#book-tab").click
       click_on '削除'
     end
 
