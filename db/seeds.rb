@@ -149,7 +149,7 @@ end
 
 # 誰でも使える用のユーザーデータ
 name = 'テストユーザー'
-email = 'test11111ssssss1@test.com'
+email = 'test@test.com'
 password = "123456"
 password_confirmation = "123456"
 user = User.create!(
