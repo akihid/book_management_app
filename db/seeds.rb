@@ -105,7 +105,7 @@ isbn_codes = [
 
 1.upto 20 do |num|
   name = Faker::Name.first_name
-  email = Faker::Internet.email
+  email = "test#{num}@co.jp"
   password = "123456"
   password_confirmation = "123456"
   user = User.create!(
