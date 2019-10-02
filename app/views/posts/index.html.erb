@@ -16,4 +16,7 @@
     </div>
   <% end %>
 </div>
+<div class="row pt-2">
+  <%= paginate @posts %>
+</div>
 <%= render partial: 'index', locals: {posts: @posts} %>
