@@ -147,3 +147,39 @@ isbn_codes = [
   end
 end
 
+# 誰でも使える用のユーザーデータ
+name = 'テストユーザー'
+email = 'test11111ssssss1@test.com'
+password = "123456"
+password_confirmation = "123456"
+user = User.create!(
+  name: name,
+  email: email,
+  password: password,
+  password_confirmation: password_confirmation
+)
+
+1.upto 3 do |num|
+
+  book = Book.create!(
+    user_id: user.id,
+    publication_id: num
+  )
+
+  post = Post.create!(
+    title: Faker::Lorem.word,
+    content: Faker::Lorem.sentence,
+    book_id: book.id
+  )
+
+  Comment.create!(
+    post_id: Post.order("RANDOM()").first.id,
+    user_id: user.id,
+    content: Faker::Lorem.sentence
+  )
+
+  Good.create!(
+    post_id: Post.order("RANDOM()").first.id,
+    user_id: user.id,
+  )
+end
