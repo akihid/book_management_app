@@ -50,7 +50,6 @@ class PublicationsController < ApplicationController
     author = result['author']
     image = result['largeImageUrl'].gsub('?_ex=200x200', '')
     isbn_code = result['isbn']
-
     {
       title: title,
       author: author,
