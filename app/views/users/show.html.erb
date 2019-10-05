@@ -7,6 +7,7 @@
         <p><%= @user.name %></p>
       </div>
       <div class="col-9 card">
+        <p><span class="h2"><%= @price.to_s(:delimited) %>円</span>分の本を読み終えました！</p>
         <%= simple_format(@user.profile) %>
       </div> 
     </div>

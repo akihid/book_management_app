@@ -50,11 +50,13 @@ class PublicationsController < ApplicationController
     author = result['author']
     image = result['largeImageUrl'].gsub('?_ex=200x200', '')
     isbn_code = result['isbn']
+    price = result['itemPrice']
     {
       title: title,
       author: author,
       image: image,
-      isbn_code: isbn_code
+      isbn_code: isbn_code,
+      price: price
     }
   end
 
@@ -72,6 +74,6 @@ class PublicationsController < ApplicationController
   end
 
   def publication_params
-    params.require(:publication).permit(:title, :author, :isbn_code, :image)
+    params.require(:publication).permit(:title, :author, :isbn_code, :image, :price)
   end
 end
