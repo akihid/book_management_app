@@ -4,6 +4,9 @@ class Book < ApplicationRecord
   has_many :posts, dependent: :destroy
   acts_as_taggable_on :categories
 
+  enum read_status: { not_read: 0, now_read: 1, finish_read: 2, }
+  validates :read_status, inclusion:{ in: Book.read_statuses.keys}
+
   validates :user_id, presence: true, uniqueness: { scope: :publication_id }
 
   scope :search_title, ->(title) do

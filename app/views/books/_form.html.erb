@@ -10,10 +10,21 @@
       </div>
       <div class="form-group">
         <%= f.label :category_list%>(カンマ区切り)<br>
-        <%= f.text_field :category_list, value: @book.category_list.join(','), id: "book-tags" %><br>
+        <%= f.text_field :category_list, value: @book.category_list.join(','), id: "book-tags" %>
         <%= f.hidden_field :publication_id%>
       </div>
 
+      <div class="form-group btn-group-toggle text-center pb-2" data-toggle="buttons">
+        <label class="btn btn-outline-secondary <%="#{@book.read_attribute_before_type_cast(:read_status).equal?(0) ? 'active' : ''} " %>">
+          <%= f.radio_button :read_status, :not_read %>未読
+        </label>
+        <label class="btn btn-outline-secondary <%="#{@book.read_attribute_before_type_cast(:read_status).equal?(1) ? 'active' : ''}" %>">
+          <%= f.radio_button :read_status, :now_read%>読書中
+        </label>
+        <label class="btn btn-outline-secondary <%="#{@book.read_attribute_before_type_cast(:read_status).equal?(2) ? 'active' : ''}" %>">
+          <%= f.radio_button :read_status, :finish_read %>読了
+        </label>     
+      </div>
       <div class="text-center pb-2">
         <%= f.submit '登録', class:"btn btn-info btn-xs"%>
         <%= link_to '戻る', :back, class:"btn btn-info btn-xs"%>

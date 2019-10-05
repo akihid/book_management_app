@@ -20,6 +20,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
+      binding.pry
       flash[:success] = "#{@book.publication.title}の編集完了"
       redirect_to user_path(current_user.id)
     else
@@ -36,7 +37,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:user_id, :publication_id, :category_list)
+    params.require(:book).permit(:user_id, :publication_id, :category_list, :read_status)
   end
 
   def set_book
