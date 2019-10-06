@@ -37,15 +37,15 @@ Rails 5.2.3
   - [ ] コメント削除はコメントした本人のみ可能
 - [ ] コメント機能といいね機能についてはページ遷移なしで実行できる
 
+## ER図
+![ER図](https://user-images.githubusercontent.com/47715043/66268945-7bf94300-e87d-11e9-96c4-bc43186601f4.png)
+
 
 ## カタログ設計
 https://docs.google.com/spreadsheets/d/1gdeDxyxdIf_U3A0NWRtomIqHprqu-0Awi_F2DwC_BwI
 
 ## テーブル定義
 https://docs.google.com/spreadsheets/d/1gdeDxyxdIf_U3A0NWRtomIqHprqu-0Awi_F2DwC_BwI/view#gid=96870717
-
-## ER図
-https://docs.google.com/spreadsheets/d/1gdeDxyxdIf_U3A0NWRtomIqHprqu-0Awi_F2DwC_BwI/view#gid=1999157521
 
 ## 画面遷移図
 https://docs.google.com/spreadsheets/d/1gdeDxyxdIf_U3A0NWRtomIqHprqu-0Awi_F2DwC_BwI/view#gid=722538482
