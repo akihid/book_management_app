@@ -103,6 +103,33 @@ isbn_codes = [
   "9784065151327",
 ]
 
+price = [
+  3278,
+  3828,
+  2728,
+  3960,
+  3300,
+  3718,
+  2970,
+  1540,
+  880,
+  3608,
+  2398,
+  3300,
+  2640,
+  2728,
+  2266,
+  3168,
+  759,
+  3300,
+  1760 ,
+  1430,
+  1540,
+]
+
+
+
+
 1.upto 20 do |num|
   name = Faker::Name.first_name
   email = "test#{num}@co.jp"
@@ -119,17 +146,20 @@ isbn_codes = [
   author = authors[num]
   image = images[num]
   isbn_code = isbn_codes[num]
+  price = price[num]
 
   publication = Publication.create!(
     title: title,
     author: author,
     image: image,
-    isbn_code: isbn_code
+    isbn_code: isbn_code,
+    price: price
   )
 
   book = Book.create!(
     user_id: user.id,
-    publication_id: publication.id
+    publication_id: publication.id,
+    read_status: rand(0..2)
   )
 
   post = Post.create!(
