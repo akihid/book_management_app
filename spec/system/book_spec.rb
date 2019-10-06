@@ -41,6 +41,43 @@ describe '本CRUD機能' , type: :system do
         expect(page).not_to have_selector '.tag'
       end
     end
+
+    context '新規作成画面で状態を入力' do
+
+      it '未読が選択されている' do
+        expect(page).to have_checked_field '未読'
+      end
+      
+      it '未読で登録される' do
+        find('.not_read').click
+        click_on '登録'
+        expect(page).to have_selector '.alert-success' , text: '登録完了'
+        page.first("#book-tab").click
+        within '.read_status' do
+          expect(page).to have_content '未読'
+        end  
+      end
+
+      it '読書中で登録される' do
+        find('.now_read').click
+        click_on '登録'
+        expect(page).to have_selector '.alert-success' , text: '登録完了'
+        page.first("#book-tab").click
+        within '.read_status' do
+          expect(page).to have_content '読書中'
+        end
+      end
+
+      it '読了で登録される' do
+        find('.finish_read').click
+        click_on '登録'
+        expect(page).to have_selector '.alert-success' , text: '登録完了'
+        page.first("#book-tab").click
+        within '.read_status' do
+          expect(page).to have_content '読了'
+        end
+      end
+    end
   end
 
   describe '編集機能' do
@@ -53,6 +90,7 @@ describe '本CRUD機能' , type: :system do
       page.first('#img_btn').click
       page.driver.browser.switch_to.alert.accept
       (all('.ui-widget-content')[1]).set('漫画')
+      find('.finish_read').click
       click_on '登録'
       page.first("#book-tab").click
       page.first("#edit_book").click
@@ -79,6 +117,34 @@ describe '本CRUD機能' , type: :system do
         page.first("#book-tab").click
         expect(page).not_to have_selector '.tag'
       end
+    end
+
+    context '編集画面で状態を更新' do
+
+      it '読了が選択されている' do
+        expect(page).to have_checked_field '読了'
+      end
+
+      it '未読に更新される' do
+        find('.not_read').click
+        click_on '登録'
+        expect(page).to have_selector '.alert-success' , text: '編集完了'
+        page.first("#book-tab").click
+        within '.read_status' do
+          expect(page).to have_content '未読'
+        end  
+      end
+
+      it '読書中で更新される' do
+        find('.now_read').click
+        click_on '登録'
+        expect(page).to have_selector '.alert-success' , text: '編集完了'
+        page.first("#book-tab").click
+        within '.read_status' do
+          expect(page).to have_content '読書中'
+        end
+      end
+
     end
   end
 

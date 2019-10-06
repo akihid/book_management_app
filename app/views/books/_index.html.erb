@@ -13,8 +13,9 @@
           <div class='col-3'>
             <% if current_user.id == book.user_id%>
               <%= link_to '編集', edit_user_book_path(current_user.id, book.id), id: "edit_book"%>
-              <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%>
+              <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%><br>
             <% end %>
+            <div class="btn btn-outline-secondary btn-ignore read_status"><%= book.read_status_i18n%></div>
           </div>
         </div>
         <%= render 'books/category_list', category_list: book.category_list %><br>

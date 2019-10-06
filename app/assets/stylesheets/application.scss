@@ -85,6 +85,10 @@ a:hover {
   text-decoration: none;
 }
 
+.btn-ignore {
+  pointer-events: none;
+}
+
 .pagination{
   display: block;
   text-align: right;
