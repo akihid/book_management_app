@@ -1,5 +1,11 @@
 ---
 ja:
+  enums:
+    book:
+      read_status:
+        not_read: "未読"
+        now_read: "読書中"
+        finish_read: "読了"
   activerecord:
     errors:
       messages:

@@ -58,6 +58,7 @@
             <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
             <%= f.text_field :author , value: params[:author], placeholder: '著者を入力' %>
             <%= f.text_field :category_name , value: params[:category_name], placeholder: 'カテゴリを入力' %>
+            <%= f.select :read_status, Book.read_statuses.keys.map.with_index {|k, i| [I18n.t("enums.book.read_status.#{k}"), i]}, include_blank: true, selected: params[:read_status] %>
             <%= f.submit "検索" ,class:"btn-sm"%>
             <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
           <% end %>
