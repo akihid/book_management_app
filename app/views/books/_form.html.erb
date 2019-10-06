@@ -15,13 +15,13 @@
       </div>
 
       <div class="form-group btn-group-toggle text-center pb-2" data-toggle="buttons">
-        <label class="btn btn-outline-secondary <%="#{@book.read_attribute_before_type_cast(:read_status).equal?(0) ? 'active' : ''} " %>">
+        <label class="btn btn-outline-secondary <%="#{@book.not_read? ? 'active' : ''} " %>">
           <%= f.radio_button :read_status, :not_read %>未読
         </label>
-        <label class="btn btn-outline-secondary <%="#{@book.read_attribute_before_type_cast(:read_status).equal?(1) ? 'active' : ''}" %>">
+        <label class="btn btn-outline-secondary <%="#{@book.now_read? ? 'active' : ''}" %>">
           <%= f.radio_button :read_status, :now_read%>読書中
         </label>
-        <label class="btn btn-outline-secondary <%="#{@book.read_attribute_before_type_cast(:read_status).equal?(2) ? 'active' : ''}" %>">
+        <label class="btn btn-outline-secondary <%="#{@book.finish_read? ? 'active' : ''}" %>">
           <%= f.radio_button :read_status, :finish_read %>読了
         </label>     
       </div>
