@@ -7,6 +7,10 @@
         <p><%= @user.name %></p>
       </div>
       <div class="col-9 card">
+        <p>
+          <span class="h2 finish_price"><%= @finish_read_price.to_s(:delimited) %>円</span>分の本を読み終えました！
+          <span class="h6 text-right text-muted not_read_price">※<%= @not_read_price.to_s(:delimited) %>円分の本が残ってます</span>
+        </p>      
         <%= simple_format(@user.profile) %>
       </div> 
     </div>
@@ -30,11 +34,9 @@
       <li role="presentation" class="tab-header">
         <a aria-controls="tab_3" data-toggle="tab" href="#tab_good" role="tab" class="btn btn-sm" id="good-tab">いいねした感想</a>
       </li>
-      <% if current_user.id == @user.id%>
-        <li role="presentation" class="tab-header <%= "#{params[:commit].present? ? 'active' : ''}" %>">
-          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="book-tab">持っている本</a>
-        </li>
-      <% end %>
+      <li role="presentation" class="tab-header <%= "#{params[:commit].present? ? 'active' : ''}" %>">
+        <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="book-tab">持っている本</a>
+      </li>
     </ul>
   </div>
   <div class="tab-content">
@@ -47,19 +49,20 @@
     <div class="tab-pane" id="tab_good" role="tabpanel">
       <%= render partial: 'posts/index', locals: {posts: @good_posts.includes(:user, :publication)} %>
     </div>
-    <% if current_user.id == @user.id%>
-      <div class="tab-pane <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="tab_book" role="tabpanel">
+    <div class="tab-pane <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="tab_book" role="tabpanel">
+      <% if current_user.id == @user.id%>
         <div class="card bg-light m-2 p-2">
           <%= form_with(url: user_path(current_user.id), method: 'get', local: true) do |f| %>
             <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
             <%= f.text_field :author , value: params[:author], placeholder: '著者を入力' %>
             <%= f.text_field :category_name , value: params[:category_name], placeholder: 'カテゴリを入力' %>
+            <%= f.select :read_status, Book.read_statuses.keys.map.with_index {|k, i| [I18n.t("enums.book.read_status.#{k}"), i]}, include_blank: true, selected: params[:read_status] %>
             <%= f.submit "検索" ,class:"btn-sm"%>
             <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
           <% end %>
         </div>
-        <%= render partial: 'books/index'%>
-      </div>
-    <% end %>
+      <% end %>
+      <%= render partial: 'books/index'%>
+    </div>
   </div>
 </div>

@@ -10,11 +10,13 @@ ja:
     attributes:
       book:
         category_list: カテゴリー
+        read_status: 状態
       publication:
         title: タイトル
         author: 作者
         image: 画像
         isbn_code: ISBNコード
+        price: 値段
       comment:
         content: 内容
       post:
