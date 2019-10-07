@@ -34,11 +34,9 @@
       <li role="presentation" class="tab-header">
         <a aria-controls="tab_3" data-toggle="tab" href="#tab_good" role="tab" class="btn btn-sm" id="good-tab">いいねした感想</a>
       </li>
-      <% if current_user.id == @user.id%>
-        <li role="presentation" class="tab-header <%= "#{params[:commit].present? ? 'active' : ''}" %>">
-          <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="book-tab">持っている本</a>
-        </li>
-      <% end %>
+      <li role="presentation" class="tab-header <%= "#{params[:commit].present? ? 'active' : ''}" %>">
+        <a aria-controls="tab_4" data-toggle="tab" href="#tab_book" role="tab" class="btn btn-sm <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="book-tab">持っている本</a>
+      </li>
     </ul>
   </div>
   <div class="tab-content">
@@ -51,8 +49,8 @@
     <div class="tab-pane" id="tab_good" role="tabpanel">
       <%= render partial: 'posts/index', locals: {posts: @good_posts.includes(:user, :publication)} %>
     </div>
-    <% if current_user.id == @user.id%>
-      <div class="tab-pane <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="tab_book" role="tabpanel">
+    <div class="tab-pane <%= "#{params[:commit].present? ? 'active' : ''}" %>" id="tab_book" role="tabpanel">
+      <% if current_user.id == @user.id%>
         <div class="card bg-light m-2 p-2">
           <%= form_with(url: user_path(current_user.id), method: 'get', local: true) do |f| %>
             <%= f.text_field :title , value: params[:title], placeholder: 'タイトルを入力' %>
@@ -63,8 +61,8 @@
             <%= link_to 'クリア', user_path(current_user.id) ,class:"btn-sm btn-dark"%>
           <% end %>
         </div>
-        <%= render partial: 'books/index'%>
-      </div>
-    <% end %>
+      <% end %>
+      <%= render partial: 'books/index'%>
+    </div>
   </div>
 </div>

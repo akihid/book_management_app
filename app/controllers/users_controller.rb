@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   PER = 6
   before_action :set_user, only: [:show]
+  before_action :authenticate_user!
+  
   def show
     @books = @user.books.includes(:publication, :taggings).search_book(params[:title], params[:author], params[:read_status]).order_new        
     @books = @books.tagged_with(params[:category_name]) if params[:category_name].present?

@@ -96,16 +96,20 @@ describe '感想CRUD機能' , type: :system do
   describe 'ユーザーページの持っている本表示確認' do
     let(:login_user) {user_b}
 
-    it 'マイページの場合、持っている本タブが存在する' do
+    it 'マイページの場合、持っている本の編集リンクが存在する' do
       visit user_path(user_b.id)
       expect(page).to have_selector '#book-tab'
       page.first("#book-tab").click
       expect(page).to have_content '出版物0'
+      expect(page).to have_content '編集'
     end
 
-    it 'マイページでない場合、持っている本タブが存在しない' do
-      visit user_path(user_c.id)
-      expect(page).not_to have_selector '#book-tab'
+    it 'マイページでない場合、持っている本の編集リンクが存在しない' do
+      visit user_path(user_a.id)
+      expect(page).to have_selector '#book-tab'
+      page.first("#book-tab").click
+      expect(page).to have_content '出版物0'
+      expect(page).not_to have_content '編集'
     end
   end
 end

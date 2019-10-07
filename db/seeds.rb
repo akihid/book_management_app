@@ -103,7 +103,7 @@ isbn_codes = [
   "9784065151327",
 ]
 
-price = [
+prices = [
   3278,
   3828,
   2728,
@@ -146,7 +146,7 @@ price = [
   author = authors[num]
   image = images[num]
   isbn_code = isbn_codes[num]
-  price = price[num]
+  price = prices[num]
 
   publication = Publication.create!(
     title: title,
