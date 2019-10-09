@@ -10,7 +10,7 @@
       <%= render partial: 'goods/good', locals: { post: @post, goods: @goods} %>
     </div>
   </div>
-  <div class="card bg-light col-4 text-center h-100">
+  <div class="card bg-light col-4 text-center h-auto">
     <%= @post.publication.title %>
     <p><%= image_tag(@post.publication.image, size: '200x200') %></p>
     <div class="text-right">
