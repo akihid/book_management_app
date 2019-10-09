@@ -5,8 +5,8 @@
 <%= form_with(url: publications_path , method: 'get' , local: true)do |f| %>
   <%= f.text_field :title, value: params[:title], placeholder: 'タイトルを入力'%>
   <%= f.text_field :author , value: params[:author], placeholder: '作者を入力'%>
-  <%= f.submit "検索" ,class:"btn-sm"%>
-  <%= link_to t('btn.clear'), publications_path ,class:"btn-sm btn-dark"%>
+  <%= f.submit "検索" ,class:"btn btn-sm btn-primary"%>
+  <%= link_to t('btn.clear'), publications_path ,class:"btn btn-sm btn-dark"%>
 <% end %>
 <div id="publications" class="container">
   <%= render partial: 'publications/publications' %>
