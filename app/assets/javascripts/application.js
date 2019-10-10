@@ -20,3 +20,18 @@
 //= require jquery-ui
 //= require tag-it
 //= require_tree .
+
+
+$(document).on('click', '#test_user_login_btn', function() {
+  var login_email = 'test@test.com';
+  var login_password = '123456';
+
+  var login_email_form = document.querySelector('#user_email');
+  var login_password_form = document.querySelector('#user_password');
+
+  login_email_form.value = login_email;
+  login_password_form.value = login_password;
+
+  document.querySelector('#login_btn').click();
+  
+});

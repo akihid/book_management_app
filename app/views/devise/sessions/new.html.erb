@@ -13,16 +13,12 @@
         <%= f.password_field :password, autocomplete: "off", class:'form-control' %>
       </div>
       <div class="form-group">
-        <%= f.submit "Log in", class:"btn btn-primary btn-block"%>
+        <%= f.submit "Log in", class:"btn btn-primary btn-block", id:'login_btn'%>
       </div>
       <p class="text-center">
       <%= link_to 'アカウントをお持ちでないですか？会員登録はこちら', new_user_registration_path, class:"small"%>
       </p>
     <% end %>
-  <div class="card">
-  <article class="card-body">
-    <p class="text-center small">※試したい方はこちらを使用してください<br>メールアドレス：test@test.com <br>パスワード：123456</p>
+    <p class="btn btn-success btn-block" id="test_user_login_btn">テストユーザーでログインする</p>                                                                                        
   </article>
-</div>                                                                                            
-  </article>
-</div> <!-- card.// -->
+</div> 
