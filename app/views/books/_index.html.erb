@@ -3,22 +3,22 @@
 </div>
 <div class="row">
   <% @books.each do |book| %>
-    <div class="col-4 mx-auto">
+    <div class="col-sm-6 col-lg-4 mx-auto">
       <div class="book_container mb-2 ">
         <div class="row">
-          <div class='col-9'>
+          <div class='col-8'>
             <%= book.publication.title %><br>
             <%= book.publication.author %><br>
           </div>
-          <div class='col-3'>
+          <div class='col-4'>
             <% if current_user.id == book.user_id%>
               <%= link_to '編集', edit_user_book_path(current_user.id, book.id), id: "edit_book"%>
               <%= link_to '削除', user_book_path(current_user.id, book.id), method: :delete, data:{ confirm: "#{book.publication.title}を削除しますがよろしいですか？"}%><br>
-            <% end %>
-            <div class="btn btn-outline-secondary btn-ignore read_status"><%= book.read_status_i18n%></div>
+              <span class="badge badge-primary text-center"><%= book.read_status_i18n %></span>
+            <% end %>     
           </div>
         </div>
-        <%= render 'books/category_list', category_list: book.category_list %><br>
+        <%= render 'books/category_list', category_list: book.category_list %>
         <div class='text-center'>
           <%= image_tag(book.publication.image , size: '200x200')%>
         </div>

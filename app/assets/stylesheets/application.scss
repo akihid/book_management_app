@@ -19,6 +19,13 @@ body{
   font-size: 1rem;
 }
 
+img {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  max-height: 220px;
+  }
+
 h1 {
   font-size: 1.5rem;
   background: linear-gradient(transparent 70%, #808080 70%);
